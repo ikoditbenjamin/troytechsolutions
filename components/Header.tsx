@@ -13,6 +13,8 @@ const navigation = [
   { name: "Projects", href: "/projects" },
 ];
 
+const BOOK_HREF = "/booking";
+
 export default function HeroSectionThree() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -100,10 +102,10 @@ export default function HeroSectionThree() {
               Sign in
             </a>
             <a
-              href="#"
+              href={BOOK_HREF}
               className="text-sm font-mono font-medium px-4 py-2 bg-gradient-to-r from-emerald-500 to-cyan-500 text-gray-950 rounded-full hover:shadow-[0_0_20px_rgba(0,255,128,0.3)] transition-all duration-300"
             >
-              Start for free
+              📅 Book a Call
             </a>
             <ModeToggle />
           </div>
@@ -161,10 +163,10 @@ export default function HeroSectionThree() {
                     Sign in
                   </a>
                   <a
-                    href="#"
+                    href={BOOK_HREF}
                     className="block rounded-full px-3 py-2.5 text-base font-mono font-medium text-center text-gray-950 bg-gradient-to-r from-emerald-500 to-cyan-500 hover:shadow-[0_0_20px_rgba(0,255,128,0.3)]"
                   >
-                    Start for free
+                    📅 Book a Call
                   </a>
 
                   {/* ✅ Mobile Mode Toggle */}

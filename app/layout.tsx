@@ -18,16 +18,16 @@ const geistMono = Geist_Mono({
 
 // ✅ Full SEO / Open Graph / Twitter Metadata
 export const metadata: Metadata = {
-
-  title:{ default: "TroyTech Solutions | IT Services & Loan Solutions", 
-    template: "%s | IT Services & Loan Solutions"
+  title: {
+    default: "TroyTech Solutions | IT Services & Loan Solutions",
+    template: "%s | IT Services & Loan Solutions",
   },
-  
+
   description:
     "We offer IT services, app development, graphics design, computer training, and reliable loan & finance solutions.",
   icons: {
-  icon: "/favicon.ico",
-},
+    icon: "/favicon.ico",
+  },
   openGraph: {
     title: "TroyTech Solution",
     description:
