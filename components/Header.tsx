@@ -4,183 +4,182 @@ import { useState, useEffect } from "react";
 import { Dialog, DialogPanel } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { ModeToggle } from "./ModeToggle";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
+import Image from "next/image";
 
-const navigation = [
-  { name: "Home", href: "/" },
-  { name: "About", href: "/about" },
-  { name: "Blogs", href: "/blogs" },
-  { name: "Contact", href: "/contact" },
+export const navigation = [
+  { name: "Home",     href: "/" },
+  { name: "About",    href: "/about" },
+  { name: "Blogs",    href: "/blogs" },
+  { name: "Contact",  href: "/contact" },
   { name: "Projects", href: "/projects" },
 ];
 
+export const isActive = (pathname: string | null, href: string): boolean =>
+  pathname === href;
+
 const BOOK_HREF = "/booking";
 
-export default function HeroSectionThree() {
+export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const [scrolled, setScrolled]             = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
-    const handleScroll = () => {
-      const isScrolled = window.scrollY > 10;
-      if (isScrolled !== scrolled) {
-        setScrolled(isScrolled);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [scrolled]);
+    const onScroll = () => setScrolled(window.scrollY > 10);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <div className="bg-gray-100 dark:bg-gray-950">
-      {/* Subtle grid overlay for matrix/cyber texture */}
-      <div
-        className="pointer-events-none fixed inset-0 z-0"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(0,255,128,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,255,128,0.03) 1px, transparent 1px)",
-          backgroundSize: "40px 40px",
-        }}
-      />
-
+    <>
       <header
-        className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-          scrolled
-            ? "bg-gray-950/90 backdrop-blur-md border-b border-emerald-900/40 shadow-[0_0_30px_rgba(0,255,128,0.04)]"
-            : "bg-transparent"
-        }`}
+        className={`fixed inset-x-0 top-0 z-50 min-h-[64px] transition-all duration-300
+          bg-[rgba(2,6,23,0.85)] backdrop-blur-md border-b border-cyan-400/20
+          ${scrolled ? "shadow-[0_4px_30px_rgba(6,182,212,0.08)]" : ""}`}
       >
         <nav
           aria-label="Global"
-          className="flex items-center justify-between p-4 lg:px-8 max-w-7xl mx-auto"
+          className="flex items-center justify-between px-4 py-3 lg:px-8 max-w-7xl mx-auto"
         >
+          {/* ── Logo ─────────────────────────────────────────────────────── */}
           <div className="flex lg:flex-1">
-            <a href="#" className="-m-1.5 p-1.5 flex items-center space-x-2">
-              <span className="sr-only">TroyTech Solution</span>
-              <div className="px-2 py-1 bg-gradient-to-r from-emerald-900 to-cyan-900 rounded-lg border border-emerald-700/50">
-                <img alt="" src="./logo/logo.png" className="h-10 w-auto" />
+            <Link
+              href="/"
+              className="group -m-1.5 p-1.5 flex items-center gap-2.5 transition-all duration-300"
+            >
+              <span className="sr-only">TroyTech Solutions</span>
+              <div className="relative h-10 w-10 rounded-xl overflow-hidden border border-cyan-500/20 bg-[#0F172A] flex items-center justify-center shadow-[0_0_10px_rgba(6,182,212,0.15)] group-hover:shadow-[0_0_20px_rgba(6,182,212,0.35)] transition-all duration-300">
+                <Image src="/logo/logo.png" alt="TroyTech logo" fill className="object-contain p-1" />
               </div>
-              <span className="font-bold text-xl text-emerald-400 tracking-tight font-mono">
-                TroyTech<span className="text-cyan-400">.</span>
+              <span className="font-extrabold text-lg tracking-tight font-mono">
+                <span className="text-white group-hover:text-cyan-100 transition-colors duration-300">TroyTech</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-emerald-400">.</span>
               </span>
-            </a>
+            </Link>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* ── Mobile controls ──────────────────────────────────────────── */}
           <div className="flex lg:hidden items-center gap-2">
-            {/* ModeToggle next to hamburger for quick mobile access */}
             <ModeToggle />
             <button
               type="button"
               onClick={() => setMobileMenuOpen(true)}
-              className="-m-2.5 inline-flex items-center justify-center rounded-full p-2.5 text-emerald-400 hover:bg-emerald-950"
+              className="-m-2.5 inline-flex items-center justify-center rounded-xl p-2.5 text-gray-400 hover:text-cyan-400 hover:bg-cyan-950/50 transition-all duration-200"
             >
               <span className="sr-only">Open main menu</span>
               <Bars3Icon aria-hidden="true" className="h-6 w-6" />
             </button>
           </div>
 
-          {/* Desktop Navigation */}
+          {/* ── Desktop nav ──────────────────────────────────────────────── */}
           <div className="hidden lg:flex lg:gap-x-8">
             {navigation.map((item) => (
-              <a
+              <Link
                 key={item.name}
                 href={item.href}
-                className="text-sm font-medium text-gray-400 hover:text-emerald-400 transition-colors font-mono tracking-wide"
+                className={`nav-link text-sm font-mono font-medium tracking-[0.05em] transition-all duration-300 ease-in-out hover:-translate-y-0.5 hover:text-cyan-400
+                  ${isActive(pathname, item.href) ? "text-cyan-400" : "text-gray-400"}`}
               >
                 {item.name}
-              </a>
+              </Link>
             ))}
           </div>
 
-          {/* Desktop Actions */}
+          {/* ── Desktop actions ──────────────────────────────────────────── */}
           <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:gap-x-4 items-center">
-            <a
+            <Link
               href="#"
-              className="text-sm font-medium text-gray-400 hover:text-emerald-400 transition-colors font-mono"
+              className="text-sm font-mono font-medium text-gray-400 hover:text-cyan-400 hover:-translate-y-0.5 transition-all duration-300"
             >
               Sign in
-            </a>
-            <a
+            </Link>
+            <Link
               href={BOOK_HREF}
-              className="text-sm font-mono font-medium px-4 py-2 bg-gradient-to-r from-emerald-500 to-cyan-500 text-gray-950 rounded-full hover:shadow-[0_0_20px_rgba(0,255,128,0.3)] transition-all duration-300"
+              className="group relative text-sm font-mono font-semibold px-5 py-2 rounded-xl bg-[#06B6DA] text-gray-950 shadow-[0_0_16px_rgba(6,182,212,0.4)] hover:brightness-110 hover:scale-[1.04] hover:shadow-[0_0_28px_rgba(6,182,212,0.65)] active:scale-[0.97] transition-all duration-200 overflow-hidden"
             >
-              📅 Book a Call
-            </a>
+              {/* shimmer sweep on hover */}
+              <span className="absolute inset-0 opacity-0 group-hover:opacity-100 animate-shimmer transition-opacity duration-300" />
+              <span className="relative">📅 Book a Call</span>
+            </Link>
             <ModeToggle />
           </div>
         </nav>
 
-        {/* Mobile Menu Dialog */}
-        <Dialog
-          open={mobileMenuOpen}
-          onClose={setMobileMenuOpen}
-          className="lg:hidden"
-        >
-          <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm" />
-          <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-gray-950 border-l border-emerald-900/40 px-6 py-6 sm:max-w-sm">
-            <div className="flex items-center justify-between">
-              <a href="#" className="-m-1.5 p-1.5 flex items-center space-x-2">
-                <div className="bg-gradient-to-r from-emerald-600 to-cyan-600 p-2 rounded-lg">
-                  <img
-                    alt=""
-                    src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=white&shade=600"
-                    className="h-6 w-auto"
-                  />
+        {/* ── Mobile menu dialog ───────────────────────────────────────── */}
+        <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden">
+          <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm transition-opacity duration-300" />
+          <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-[#020617] border-l border-cyan-400/20 px-6 py-6 sm:max-w-sm transition-transform duration-300">
+
+            {/* Header */}
+            <div className="flex items-center justify-between mb-8">
+              <Link href="/" className="flex items-center gap-2.5" onClick={() => setMobileMenuOpen(false)}>
+                <div className="relative h-9 w-9 rounded-xl overflow-hidden border border-cyan-500/20 bg-[#0F172A]">
+                  <Image src="/logo/logo.png" alt="TroyTech logo" fill className="object-contain p-1" />
                 </div>
-                <span className="font-bold text-xl text-emerald-400 font-mono">
-                  Troy
+                <span className="font-extrabold text-base font-mono">
+                  <span className="text-white">TroyTech</span>
+                  <span className="text-cyan-400">.</span>
                 </span>
-              </a>
+              </Link>
               <button
                 type="button"
                 onClick={() => setMobileMenuOpen(false)}
-                className="-m-2.5 rounded-full p-2.5 text-emerald-400 hover:bg-emerald-950"
+                className="-m-2.5 rounded-xl p-2.5 text-gray-400 hover:text-cyan-400 hover:bg-cyan-950/50 transition-all duration-200"
               >
                 <span className="sr-only">Close menu</span>
                 <XMarkIcon aria-hidden="true" className="h-6 w-6" />
               </button>
             </div>
 
-            <div className="mt-6 flow-root">
-              <div className="-my-6 divide-y divide-emerald-900/40">
-                <div className="space-y-1 py-6">
-                  {navigation.map((item) => (
-                    <a
-                      key={item.name}
-                      href={item.href}
-                      className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-mono font-medium text-gray-300 hover:bg-emerald-950 hover:text-emerald-400"
-                    >
-                      {item.name}
-                    </a>
-                  ))}
-                </div>
-                <div className="py-6 space-y-3">
-                  <a
-                    href="#"
-                    className="block rounded-lg px-3 py-2.5 text-base font-mono font-medium text-gray-400 hover:bg-emerald-950 hover:text-emerald-400"
-                  >
-                    Sign in
-                  </a>
-                  <a
-                    href={BOOK_HREF}
-                    className="block rounded-full px-3 py-2.5 text-base font-mono font-medium text-center text-gray-950 bg-gradient-to-r from-emerald-500 to-cyan-500 hover:shadow-[0_0_20px_rgba(0,255,128,0.3)]"
-                  >
-                    📅 Book a Call
-                  </a>
+            {/* Nav links */}
+            <div className="space-y-1 mb-6">
+              {navigation.map((item) => (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`-mx-3 flex items-center rounded-xl px-3 py-3 text-base font-mono font-medium transition-all duration-200
+                    ${isActive(pathname, item.href)
+                      ? "text-cyan-400 bg-cyan-950/40 border border-cyan-500/20"
+                      : "text-gray-300 hover:bg-cyan-950/30 hover:text-cyan-400 border border-transparent"}`}
+                >
+                  {item.name}
+                </Link>
+              ))}
+            </div>
 
-                  {/* ✅ Mobile Mode Toggle */}
-                  <div className="pt-4 flex justify-center">
-                    <ModeToggle />
-                  </div>
-                </div>
+            {/* Divider */}
+            <div className="h-px bg-gradient-to-r from-transparent via-cyan-500/20 to-transparent mb-6" />
+
+            {/* Actions */}
+            <div className="space-y-3">
+              <Link
+                href="#"
+                onClick={() => setMobileMenuOpen(false)}
+                className="block rounded-xl px-3 py-3 text-base font-mono font-medium text-gray-400 hover:bg-cyan-950/30 hover:text-cyan-400 transition-all duration-200"
+              >
+                Sign in
+              </Link>
+              <Link
+                href={BOOK_HREF}
+                onClick={() => setMobileMenuOpen(false)}
+                className="block rounded-xl px-3 py-3 text-base font-mono font-semibold text-center text-gray-950 bg-[#06B6DA] shadow-[0_0_16px_rgba(6,182,212,0.4)] hover:brightness-110 hover:shadow-[0_0_28px_rgba(6,182,212,0.6)] transition-all duration-200"
+              >
+                📅 Book a Call
+              </Link>
+              <div className="pt-2 flex justify-center">
+                <ModeToggle />
               </div>
             </div>
+
           </DialogPanel>
         </Dialog>
       </header>
 
-      {/* Two column hero section or other content can go here */}
-    </div>
+      {/* Spacer so content doesn't hide under fixed header */}
+      <div className="h-16" />
+    </>
   );
 }

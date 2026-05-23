@@ -1,10 +1,16 @@
 // app/layout.tsx
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import FooterV2 from "@/components/footer";
 import { ThemeProvider } from "@/components/theme-provider";
 import Header from "@/components/Header";
+
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+  display: "swap",
+});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -60,20 +66,38 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className="dark" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${inter.variable} ${geistSans.variable} ${geistMono.variable} antialiased bg-[#020617] text-slate-100`}
       >
+        {/* Global cyber grid texture */}
+        <div
+          className="pointer-events-none fixed inset-0 z-0"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(6,182,212,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(6,182,212,0.025) 1px, transparent 1px)",
+            backgroundSize: "48px 48px",
+          }}
+        />
+        {/* Global ambient glow — top-left */}
+        <div className="pointer-events-none fixed top-0 left-0 w-[700px] h-[500px] -translate-x-1/3 -translate-y-1/3 rounded-full bg-cyan-500/5 blur-[120px] z-0" />
+        {/* Global ambient glow — bottom-right */}
+        <div className="pointer-events-none fixed bottom-0 right-0 w-[600px] h-[400px] translate-x-1/3 translate-y-1/3 rounded-full bg-emerald-500/4 blur-[100px] z-0" />
+
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
-          enableSystem
+          defaultTheme="dark"
+          enableSystem={false}
           disableTransitionOnChange
         >
-          <Header />
-          {children}
+          <div className="relative z-10">
+            <Header />
+            {children}
+          </div>
         </ThemeProvider>
-        <FooterV2 />
+        <div className="relative z-10">
+          <FooterV2 />
+        </div>
       </body>
     </html>
   );

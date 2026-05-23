@@ -65,35 +65,35 @@ export default function FeatureSectionThree() {
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
 
   return (
-    <div className="bg-white dark:bg-gray-950 py-24 sm:py-32 transition-colors duration-300">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+    <div className="relative bg-[#0F172A] border-t border-cyan-500/10 py-24 sm:py-32 overflow-hidden transition-colors duration-300">
+      {/* Radial glow — center */}
+      <div className="absolute inset-0 pointer-events-none"
+        style={{ background: "radial-gradient(ellipse 80% 60% at 50% 50%, rgba(6,182,212,0.05) 0%, transparent 70%)" }} />
+      <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
 
         {/* Header */}
         <div className="mx-auto max-w-2xl text-center">
           <div className="flex justify-center mb-6">
-            <div className="h-px w-12 bg-gradient-to-r from-transparent via-indigo-500 to-transparent self-center"></div>
-            <h2 className="mx-4 text-base font-semibold text-indigo-600 uppercase tracking-wide">
+            <div className="h-px w-12 bg-gradient-to-r from-transparent via-cyan-500 to-transparent self-center" />
+            <h2 className="mx-4 text-base font-semibold text-cyan-400 uppercase tracking-widest font-mono">
               TroyTech Features
             </h2>
-            <div className="h-px w-12 bg-gradient-to-r from-transparent via-indigo-500 to-transparent self-center"></div>
+            <div className="h-px w-12 bg-gradient-to-r from-transparent via-cyan-500 to-transparent self-center" />
           </div>
 
-          <p className="mt-2 text-4xl font-bold tracking-tight text-gray-900 dark:text-white">
-            <span className="relative">
-              <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
-                Powerful Capabilities
-              </span>
-              <span className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-indigo-600/40 to-purple-600/40 blur-sm"></span>
+          <p className="mt-2 text-4xl font-bold tracking-tight text-white">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-emerald-400">
+              Powerful Capabilities
             </span>{" "}
             for Modern Future
           </p>
 
-          <p className="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-400">
+          <p className="mt-6 text-lg leading-8 text-gray-400">
             Computer Training, Software Installation, Hardware Services,
-            Website Designing, Hosting, Mobile Apps, Phone Flashing & Updates,
+            Website Designing, Hosting, Mobile Apps, Phone Flashing &amp; Updates,
             Computer Repair, Graphics Designing, Printing Solutions, CCTV
             Installation, Network Setup, Data Recovery, IT Consultancy,
-            Loans & Financing, and more.
+            Loans &amp; Financing, and more.
           </p>
         </div>
 
@@ -102,34 +102,37 @@ export default function FeatureSectionThree() {
           {features.map((feature) => (
             <div
               key={feature.name}
-              className="group relative overflow-hidden rounded-2xl bg-white dark:bg-gray-900 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-800"
+              className="group relative overflow-hidden rounded-2xl bg-[#020617] border border-cyan-500/10 shadow-[0_4px_24px_rgba(0,0,0,0.4)] backdrop-blur-sm hover:-translate-y-1.5 hover:border-cyan-500/40 hover:shadow-[0_8px_40px_rgba(6,182,212,0.12)] transition-all duration-300 ease-out"
               onMouseEnter={() => setHoveredCard(feature.name)}
               onMouseLeave={() => setHoveredCard(null)}
             >
-              <div className="absolute top-0 right-0 w-24 h-24 -mr-10 -mt-10 rounded-full bg-gradient-to-br opacity-10 blur-xl from-indigo-600 to-purple-600"></div>
+              {/* Subtle corner glow */}
+              <div className="absolute top-0 right-0 w-32 h-32 -mr-12 -mt-12 rounded-full bg-cyan-500/5 blur-2xl pointer-events-none" />
 
               <div className="p-6">
-                <div className="absolute top-6 right-6">
-                  <span className="inline-flex items-center rounded-full bg-indigo-50 dark:bg-indigo-900/40 px-2 py-1 text-xs font-medium text-indigo-700 dark:text-indigo-300">
+                {/* Category badge */}
+                <div className="absolute top-5 right-5">
+                  <span className="inline-flex items-center rounded-full bg-cyan-950/60 border border-cyan-500/20 px-2.5 py-0.5 text-xs font-mono font-medium text-cyan-400">
                     {feature.category}
                   </span>
                 </div>
 
+                {/* Icon */}
                 <div
-                  className={`inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${feature.gradient} shadow-md mb-5`}
+                  className={`inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${feature.gradient} shadow-lg mb-5`}
                 >
                   <feature.icon className="h-6 w-6 text-white" />
                 </div>
 
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white group-hover:text-indigo-600 transition-colors duration-300">
+                <h3 className="text-lg font-semibold text-white group-hover:text-cyan-400 transition-colors duration-300 pr-16">
                   {feature.name}
                 </h3>
 
-                <p className="mt-3 text-base text-gray-600 dark:text-gray-400">
+                <p className="mt-3 text-sm text-gray-400 leading-relaxed">
                   {feature.description}
                 </p>
 
-                <div className="mt-5 inline-flex h-8 items-center text-sm font-medium text-indigo-600">
+                <div className="mt-5 inline-flex items-center text-sm font-medium text-cyan-400/70 group-hover:text-cyan-400 transition-colors duration-300">
                   <span>Learn more</span>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -140,18 +143,14 @@ export default function FeatureSectionThree() {
                     viewBox="0 0 24 24"
                     stroke="currentColor"
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 5l7 7-7 7"
-                    />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
                 </div>
               </div>
 
+              {/* Bottom accent bar */}
               <div
-                className={`absolute bottom-0 left-0 h-1 bg-gradient-to-r ${feature.gradient} transition-all duration-500 ease-out ${
+                className={`absolute bottom-0 left-0 h-[2px] bg-gradient-to-r ${feature.gradient} transition-all duration-500 ease-out ${
                   hoveredCard === feature.name ? "w-full" : "w-0"
                 }`}
               />
@@ -160,15 +159,13 @@ export default function FeatureSectionThree() {
         </div>
 
         {/* Buttons */}
-        <div className="mt-20 flex justify-center">
-          <div className="inline-flex rounded-full bg-indigo-50 dark:bg-gray-800 p-1">
-            <button className="rounded-full bg-white dark:bg-gray-700 px-4 py-2.5 text-sm font-semibold text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-              View documentation
-            </button>
-            <button className="rounded-full bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500">
-              Get started
-            </button>
-          </div>
+        <div className="mt-20 flex justify-center gap-3">
+          <button className="rounded-xl px-5 py-2.5 text-sm font-semibold text-white bg-transparent border border-[#06B6DA]/50 hover:border-[#06B6DA] hover:shadow-[0_0_16px_rgba(6,182,218,0.25)] hover:scale-[1.03] active:scale-[0.97] transition-all duration-200">
+            View documentation
+          </button>
+          <button className="rounded-xl px-5 py-2.5 text-sm font-semibold text-gray-950 bg-[#06B6DA] shadow-[0_0_14px_rgba(6,182,218,0.4)] hover:brightness-110 hover:scale-[1.04] hover:shadow-[0_0_26px_rgba(6,182,218,0.6)] active:scale-[0.97] transition-all duration-200">
+            Get started
+          </button>
         </div>
 
       </div>
