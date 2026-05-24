@@ -1,20 +1,16 @@
 // app/layout.tsx
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Inter } from "next/font/google";
+import { Poppins, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import FooterV2 from "@/components/footer";
 import { ThemeProvider } from "@/components/theme-provider";
 import Header from "@/components/Header";
 
-const inter = Inter({
-  variable: "--font-inter",
+const poppins = Poppins({
+  variable: "--font-poppins",
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
   display: "swap",
-});
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
 });
 
 const geistMono = Geist_Mono({
@@ -68,7 +64,8 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
       <body
-        className={`${inter.variable} ${geistSans.variable} ${geistMono.variable} antialiased bg-[#020617] text-slate-100`}
+        className={`${poppins.variable} ${geistMono.variable} antialiased bg-[#020617] text-slate-100`}
+        style={{ fontFamily: "var(--font-poppins), system-ui, sans-serif" }}
       >
         {/* Global cyber grid texture */}
         <div
