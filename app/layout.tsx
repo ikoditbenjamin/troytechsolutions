@@ -5,6 +5,7 @@ import "./globals.css";
 import FooterV2 from "@/components/footer";
 import { ThemeProvider } from "@/components/theme-provider";
 import Header from "@/components/Header";
+import ChatBot from "@/components/ChatBot";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -95,6 +96,7 @@ export default function RootLayout({
         <div className="relative z-10">
           <FooterV2 />
         </div>
+        <ChatBot />
       </body>
     </html>
   );
