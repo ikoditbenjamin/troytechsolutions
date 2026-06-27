@@ -3,7 +3,7 @@
  *
  * Production-ready XML sitemap for TroyTech Solutions.
  * Uses the Next.js 15/16 MetadataRoute API — no deprecated packages needed.
- * The file is served automatically at https://www.troytech.xyz/sitemap.xml
+ * The file is served automatically at https://troytech.xyz/sitemap.xml
  *
  * SEO priority scheme:
  *   1.0  →  Homepage          (entry point, highest crawl priority)
@@ -18,7 +18,7 @@ import type { MetadataRoute } from "next";
 /* ─── Site config ────────────────────────────────────────────────────────── */
 
 /** Canonical base URL — used as prefix for every entry. */
-const BASE_URL = "https://www.troytech.xyz";
+const BASE_URL = "https://troytech.xyz";
 
 /**
  * Shared "last modified" date.
