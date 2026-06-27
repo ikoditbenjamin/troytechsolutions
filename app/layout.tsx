@@ -21,6 +21,8 @@ const geistMono = Geist_Mono({
 
 // ✅ Full SEO / Open Graph / Twitter Metadata
 export const metadata: Metadata = {
+  // Canonical base URL — resolves all relative metadata image paths
+  metadataBase: new URL("https://www.troytech.xyz"),
   title: {
     default: "TroyTech Solutions | IT Services & Loan Solutions",
     template: "%s | IT Services & Loan Solutions",
