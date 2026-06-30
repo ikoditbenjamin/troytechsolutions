@@ -169,8 +169,10 @@
 
 import type { MetadataRoute } from "next";
 
-const BASE_URL = "https://troytech.xyz";
-const SITE_UPDATED = new Date("2025-06-27");
+const BASE_URL = "https://www.troytech.xyz";
+
+// Update SITE_UPDATED whenever content changes to signal crawlers to re-index
+const SITE_UPDATED = new Date("2026-06-30");
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
@@ -179,6 +181,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: SITE_UPDATED,
       changeFrequency: "weekly",
       priority: 1.0,
+    },
+    {
+      url: `${BASE_URL}/services`,
+      lastModified: SITE_UPDATED,
+      changeFrequency: "monthly",
+      priority: 0.9,
     },
     {
       url: `${BASE_URL}/about`,
@@ -202,6 +210,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${BASE_URL}/contact`,
       lastModified: SITE_UPDATED,
       changeFrequency: "yearly",
+      priority: 0.8,
+    },
+    {
+      url: `${BASE_URL}/booking`,
+      lastModified: SITE_UPDATED,
+      changeFrequency: "monthly",
       priority: 0.8,
     },
   ];
