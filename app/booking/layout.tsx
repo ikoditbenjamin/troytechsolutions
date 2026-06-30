@@ -1,33 +1,45 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Book a Consultation | TroyTech Solutions — Free Call",
+  title: "Book a Free IT Consultation | TroyTech Solutions Uganda",
   description:
-    "Schedule a free consultation with TroyTech Solutions. Discuss your software, IT, design, or loan needs with our expert team via WhatsApp.",
+    "Book a free consultation with TroyTech Solutions, Kampala Uganda. Discuss your software, website, IT security, computer training, design, or loan needs with our expert team.",
   keywords: [
-    "book consultation TroyTech",
-    "free IT consultation Uganda",
-    "schedule call developer Uganda",
+    "book IT consultation Uganda",
+    "free software consultation Kampala",
+    "hire developer Uganda",
+    "IT consultation Kampala Uganda",
+    "book web developer Uganda",
+    "schedule IT meeting Uganda",
+    "free tech consultation Uganda",
+    "WhatsApp developer Uganda",
+    "software quote Uganda",
+    "IT project consultation East Africa",
+    "book TroyTech Solutions",
+    "website consultation Uganda",
+    "app development consultation Uganda",
+    "startup tech consultation Kampala",
+    "book IT services Uganda",
   ],
   alternates: {
     canonical: "https://www.troytech.xyz/booking",
   },
   robots: { index: true, follow: true },
   openGraph: {
-    title: "Book a Consultation | TroyTech Solutions — Free Call",
+    title: "Book a Free IT Consultation | TroyTech Solutions Uganda",
     description:
-      "Schedule a free consultation with TroyTech Solutions. Discuss your software, IT, design, or loan needs with our expert team via WhatsApp.",
+      "Book a free consultation with TroyTech Solutions, Kampala Uganda. Discuss your software, website, IT security, or loan needs with our expert team.",
     url: "https://www.troytech.xyz/booking",
     siteName: "TroyTech Solutions",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Book a TroyTech Consultation" }],
-    locale: "en_US",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Book IT Consultation TroyTech Uganda" }],
+    locale: "en_UG",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Book a Consultation | TroyTech Solutions — Free Call",
+    title: "Book a Free IT Consultation | TroyTech Solutions Uganda",
     description:
-      "Schedule a free consultation with TroyTech Solutions. Discuss your software, IT, design, or loan needs with our expert team via WhatsApp.",
+      "Book a free consultation with TroyTech Solutions, Kampala Uganda. Discuss your software, website, IT security, or loan needs.",
     images: ["/og-image.png"],
   },
 };
