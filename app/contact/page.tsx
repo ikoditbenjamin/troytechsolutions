@@ -28,17 +28,41 @@ const socialLinks = [
 export default function ContactPage() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' })
   const [submitted, setSubmitted] = useState(false)
+  const [loading, setLoading]   = useState(false)
+  const [error, setError]       = useState('')
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
     setFormData(prev => ({ ...prev, [name]: value }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setSubmitted(true)
-    setFormData({ name: '', email: '', message: '' })
-    setTimeout(() => setSubmitted(false), 3000)
+    setLoading(true)
+    setError('')
+
+    try {
+      const res = await fetch('/api/contact', {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify(formData),
+      })
+
+      const data = await res.json()
+
+      if (!res.ok) {
+        setError(data.error || 'Something went wrong. Please try again.')
+        return
+      }
+
+      setSubmitted(true)
+      setFormData({ name: '', email: '', message: '' })
+      setTimeout(() => setSubmitted(false), 5000)
+    } catch {
+      setError('Network error. Please check your connection and try again.')
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -219,16 +243,32 @@ export default function ContactPage() {
 
                 <Button
                   type="submit"
-                  className="w-full rounded-xl h-11 text-sm font-semibold text-gray-950 bg-[#06B6DA] shadow-[0_0_16px_rgba(6,182,218,0.35)] hover:brightness-110 hover:shadow-[0_0_28px_rgba(6,182,218,0.55)] active:scale-[0.98] transition-all duration-200"
+                  disabled={loading}
+                  className="w-full rounded-xl h-11 text-sm font-semibold text-gray-950 bg-[#06B6DA] shadow-[0_0_16px_rgba(6,182,218,0.35)] hover:brightness-110 hover:shadow-[0_0_28px_rgba(6,182,218,0.55)] active:scale-[0.98] transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  {submitted ? '✓ Message Sent!' : 'Send Message'}
+                  {loading ? (
+                    <span className="flex items-center justify-center gap-2">
+                      <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M21 12a9 9 0 1 1-6.219-8.56" />
+                      </svg>
+                      Sending…
+                    </span>
+                  ) : submitted ? '✓ Message Sent!' : 'Send Message'}
                 </Button>
               </form>
 
+              {/* Error banner */}
+              {error && (
+                <div className="mt-4 p-3 bg-red-500/10 border border-red-500/20 rounded-xl">
+                  <p className="text-sm text-red-400 font-medium">{error}</p>
+                </div>
+              )}
+
+              {/* Success banner */}
               {submitted && (
                 <div className="mt-4 p-3 bg-cyan-500/10 border border-cyan-500/20 rounded-xl">
                   <p className="text-sm text-cyan-400 font-medium">
-                    Thanks! We&apos;ll get back to you soon.
+                    ✅ Message sent! We&apos;ll reply within 24 hours. Check your inbox for a confirmation email.
                   </p>
                 </div>
               )}
