@@ -12,8 +12,8 @@
  * Environment variables required:
  *   RESEND_API_KEY  — from .env.local (local) or Vercel env vars (production)
  *
- * Sending domain: mail.troytech.xyz (must be verified in Resend dashboard)
- * DNS managed via Namecheap — add the MX/TXT/CNAME records Resend provides.
+ * Sending domain: troytech.xyz (verified in Resend dashboard)
+ * DNS managed via Namecheap.
  * Docs: https://resend.com/docs/dashboard/domains/introduction
  */
 
@@ -23,8 +23,8 @@ import { NextRequest, NextResponse } from "next/server";
 /* ─── Constants ──────────────────────────────────────────────────────────── */
 
 const TROY_TECH_EMAIL   = "techtroy28@gmail.com";
-const FROM_NOTIFICATION = "TroyTech Contact Form <noreply@mail.troytech.xyz>";
-const FROM_AUTOREPLY    = "TroyTech Solutions <noreply@mail.troytech.xyz>";
+const FROM_NOTIFICATION = "TroyTech Contact Form <noreply@troytech.xyz>";
+const FROM_AUTOREPLY    = "TroyTech Solutions <noreply@troytech.xyz>";
 
 /* ─── Input validation ───────────────────────────────────────────────────── */
 
