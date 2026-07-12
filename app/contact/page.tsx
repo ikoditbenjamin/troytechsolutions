@@ -26,7 +26,7 @@ const socialLinks = [
 ]
 
 export default function ContactPage() {
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' })
+  const [formData, setFormData] = useState({ name: '', email: '', message: '', website: '' })
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading]   = useState(false)
   const [error, setError]       = useState('')
@@ -56,7 +56,7 @@ export default function ContactPage() {
       }
 
       setSubmitted(true)
-      setFormData({ name: '', email: '', message: '' })
+      setFormData({ name: '', email: '', message: '', website: '' })
       setTimeout(() => setSubmitted(false), 5000)
     } catch {
       setError('Network error. Please check your connection and try again.')
@@ -238,6 +238,20 @@ export default function ContactPage() {
                     required
                     rows={5}
                     className="w-full px-4 py-3 rounded-xl bg-[#020b18] border border-cyan-500/20 text-white placeholder:text-gray-600 focus:outline-none focus:border-cyan-500/60 focus:ring-2 focus:ring-cyan-500/10 resize-none text-sm leading-relaxed transition-colors"
+                  />
+                </div>
+
+                {/* ── Honeypot field — hidden from humans, traps bots ── */}
+                <div aria-hidden="true" style={{ position: 'absolute', left: '-9999px', opacity: 0, height: 0, overflow: 'hidden' }}>
+                  <label htmlFor="website">Website (leave this empty)</label>
+                  <input
+                    id="website"
+                    name="website"
+                    type="text"
+                    value={formData.website}
+                    onChange={handleChange}
+                    tabIndex={-1}
+                    autoComplete="off"
                   />
                 </div>
 
