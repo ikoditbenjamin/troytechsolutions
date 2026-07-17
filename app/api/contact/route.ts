@@ -3,19 +3,25 @@
  *
  * POST /api/contact
  *
- * Spam protection layers:
- *   1. Honeypot field  — bots fill hidden fields, humans don't. Silent reject.
- *   2. Rate limiting   — max 3 submissions per IP per hour via Upstash Redis.
- *   3. Input validation — name ≥ 2 chars, valid email, message ≥ 10 chars.
+ * Spam / abuse protection layers (in order of execution):
+ *   1. Rate limiting     — max 3 submissions per IP per hour via Upstash Redis.
+ *   2. Honeypot field    — bots fill hidden fields, humans don't. Silent reject.
+ *   3. Input validation  — name ≥ 2 chars, valid email, message ≥ 10 chars.
+ *   4. Cloudflare Turnstile — server-side token verification.        // CHANGED
+ *      Emails are only sent AFTER Turnstile verification succeeds.  // CHANGED
  *
  * On success sends two emails via Resend:
  *   → Notification to TroyTech inbox (techtroy28@gmail.com)
  *   → Auto-reply to the visitor's email
  *
  * Required environment variables:
- *   RESEND_API_KEY          — Resend API key
- *   UPSTASH_REDIS_REST_URL  — Upstash Redis REST URL
+ *   RESEND_API_KEY           — Resend API key
+ *   UPSTASH_REDIS_REST_URL   — Upstash Redis REST URL
  *   UPSTASH_REDIS_REST_TOKEN — Upstash Redis REST token
+ *   TURNSTILE_SECRET_KEY     — Cloudflare Turnstile secret key         // CHANGED
+ *
+ * NOTE: NEXT_PUBLIC_TURNSTILE_SITE_KEY is a client-side env var used by the
+ * <Turnstile /> widget in app/contact/page.tsx — it is NOT read here.
  */
 
 import { Resend }      from "resend";
@@ -28,6 +34,9 @@ import { NextRequest, NextResponse } from "next/server";
 const TROY_TECH_EMAIL   = "techtroy28@gmail.com";
 const FROM_NOTIFICATION = "TroyTech Contact Form <noreply@troytech.xyz>";
 const FROM_AUTOREPLY    = "TroyTech Solutions <noreply@troytech.xyz>";
+
+// ── CHANGED: Cloudflare's Turnstile verification endpoint ──
+const TURNSTILE_VERIFY_URL = "https://challenges.cloudflare.com/turnstile/v0/siteverify";
 
 /* ─── Rate limiter setup ─────────────────────────────────────────────────── */
 
@@ -61,17 +70,65 @@ interface ContactPayload {
   message: string;
   // Honeypot field — should always be empty for real users
   website?: string;
+  // ── CHANGED: token returned by the client-side Turnstile widget ──
+  turnstileToken: string;
+}
+
+// ── CHANGED: typed shape of Cloudflare's siteverify response ──
+interface TurnstileVerifyResponse {
+  success: boolean;
+  "error-codes"?: string[];
+  challenge_ts?: string;
+  hostname?: string;
+  action?: string;
+  cdata?: string;
 }
 
 /* ─── Validation ─────────────────────────────────────────────────────────── */
 
 function validate(body: unknown): body is ContactPayload {
   if (typeof body !== "object" || body === null) return false;
-  const { name, email, message } = body as Record<string, unknown>;
+  const { name, email, message, turnstileToken } = body as Record<string, unknown>;
   if (typeof name    !== "string" || name.trim().length    < 2)  return false;
   if (typeof email   !== "string" || !email.includes("@"))        return false;
   if (typeof message !== "string" || message.trim().length < 10) return false;
+  // ── CHANGED: token must be present and non-empty ──
+  if (typeof turnstileToken !== "string" || turnstileToken.trim().length === 0) return false;
   return true;
+}
+
+// ── CHANGED: verifies a Turnstile token against Cloudflare's siteverify API ──
+async function verifyTurnstileToken(
+  token: string,
+  remoteIp: string,
+): Promise<TurnstileVerifyResponse> {
+  const secretKey = process.env.TURNSTILE_SECRET_KEY;
+
+  if (!secretKey) {
+    console.error("[contact/route] TURNSTILE_SECRET_KEY is not set.");
+    return { success: false, "error-codes": ["missing-secret-key"] };
+  }
+
+  const formData = new URLSearchParams();
+  formData.append("secret", secretKey);
+  formData.append("response", token);
+  if (remoteIp !== "unknown") {
+    formData.append("remoteip", remoteIp);
+  }
+
+  try {
+    const res = await fetch(TURNSTILE_VERIFY_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: formData.toString(),
+    });
+
+    const data = (await res.json()) as TurnstileVerifyResponse;
+    return data;
+  } catch (err) {
+    console.error("[contact/route] Turnstile verification request failed:", err);
+    return { success: false, "error-codes": ["network-error"] };
+  }
 }
 
 /* ─── Email templates ────────────────────────────────────────────────────── */
@@ -181,15 +238,15 @@ function buildAutoReplyHtml(name: string): string {
 
 export async function POST(request: NextRequest) {
 
+  // Extract real client IP once — used for both rate limiting and Turnstile. // CHANGED (hoisted up, reused below)
+  const ip =
+    request.headers.get("x-forwarded-for")?.split(",")[0].trim() ??
+    request.headers.get("x-real-ip") ??
+    "unknown";
+
   /* ── 1. Rate limiting ───────────────────────────────────────────────── */
   const rateLimiter = getRateLimiter();
   if (rateLimiter) {
-    // Extract real client IP (Vercel sets x-forwarded-for)
-    const ip =
-      request.headers.get("x-forwarded-for")?.split(",")[0].trim() ??
-      request.headers.get("x-real-ip") ??
-      "unknown";
-
     const { success, remaining, reset } = await rateLimiter.limit(ip);
 
     if (!success) {
@@ -239,23 +296,43 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  /* ── 4. Input validation ────────────────────────────────────────────── */
+  /* ── 4. Input validation (name, email, message, turnstileToken) ──────── */
   if (!validate(body)) {
     return NextResponse.json(
       {
         success: false,
-        error: "Please provide a valid name (min 2 chars), email address, and message (min 10 chars).",
+        error:
+          "Please provide a valid name (min 2 chars), email address, message (min 10 chars), and complete the verification challenge.",
       },
       { status: 422 }
     );
   }
 
-  const { name, email, message } = body;
+  const { name, email, message, turnstileToken } = body;
   const sanitisedName    = name.trim();
   const sanitisedEmail   = email.trim().toLowerCase();
   const sanitisedMessage = message.trim();
 
-  /* ── 5. API key guard ───────────────────────────────────────────────── */
+  /* ── 5. Turnstile verification — CHANGED ──────────────────────────────
+     Emails are only ever sent after this succeeds. Any failure here
+     rejects the request before Resend is touched. */
+  const turnstileResult = await verifyTurnstileToken(turnstileToken, ip);
+
+  if (!turnstileResult.success) {
+    console.warn(
+      "[contact/route] Turnstile verification failed:",
+      turnstileResult["error-codes"]
+    );
+    return NextResponse.json(
+      {
+        success: false,
+        error: "Verification failed. Please refresh the page and try again.",
+      },
+      { status: 403 }
+    );
+  }
+
+  /* ── 6. API key guard ───────────────────────────────────────────────── */
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) {
     console.error("[contact/route] RESEND_API_KEY is not set.");
@@ -265,7 +342,7 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  /* ── 6. Send emails via Resend ──────────────────────────────────────── */
+  /* ── 7. Send emails via Resend ──────────────────────────────────────── */
   const resend = new Resend(apiKey);
 
   const [notification, autoReply] = await Promise.allSettled([

@@ -11,6 +11,7 @@
   "dependencies": {
     "@headlessui/react": "^2.2.9",
     "@heroicons/react": "^2.2.0",
+    "@marsidev/react-turnstile": "^1.5.3",
     "@slalombuild/react-mailto": "^0.2.7",
     "@tamagui/lucide-icons": "2.0.0-rc.25",
     "@upstash/ratelimit": "^2.0.8",
