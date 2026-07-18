@@ -216,7 +216,7 @@ function buildAutoReplyHtml(name: string): string {
             <a href="https://www.troytech.xyz/booking" class="cta">📅 Book a Free Consultation</a>
             <div class="info">
               <p>📞 <a href="tel:+256747447447">+256 747 447 447</a></p>
-              <p>📱 <a href="https://wa.me/256782391512">WhatsApp: +256 782 391 512</a></p>
+              <p>📱 <a href="https://wa.me/256747447447">WhatsApp: +256 747 447 447</a></p>
               <p>📧 <a href="mailto:techtroy28@gmail.com">techtroy28@gmail.com</a></p>
               <p>📍 Kireka Kamuli C, Kampala, Uganda</p>
             </div>
