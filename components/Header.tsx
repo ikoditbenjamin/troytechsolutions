@@ -9,10 +9,10 @@ import Link from "next/link";
 import Image from "next/image";
 
 export const navigation = [
-  { name: "Home",     href: "/" },
-  { name: "About",    href: "/about" },
-  { name: "Blogs",    href: "/blogs" },
-  { name: "Contact",  href: "/contact" },
+  { name: "Home", href: "/" },
+  { name: "About", href: "/about" },
+  { name: "Blogs", href: "/blogs" },
+  { name: "Contact", href: "/contact" },
   { name: "Projects", href: "/projects" },
 ];
 
@@ -23,7 +23,7 @@ const BOOK_HREF = "/booking";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [scrolled, setScrolled]             = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -52,14 +52,16 @@ export default function Header() {
               <span className="sr-only">TroyTech Solutions</span>
 
               {/* Logo container — dark rounded square with orange ring glow */}
-              <div className="relative h-11 w-11 rounded-xl overflow-hidden bg-[#1a1a1a] flex items-center justify-center
+              <div
+                className="relative h-11 w-11 rounded-xl overflow-hidden bg-[#1a1a1a] flex items-center justify-center
                 ring-1 ring-orange-500/40
                 shadow-[0_0_14px_rgba(249,115,22,0.25)]
                 group-hover:ring-orange-400/70
                 group-hover:shadow-[0_0_28px_rgba(249,115,22,0.50)]
-                transition-all duration-300">
+                transition-all duration-300"
+              >
                 <Image
-                  src="/logo/logo.png"
+                  src="/logo/TROYTECH.png"
                   alt="TroyTech logo"
                   fill
                   className="object-contain p-1.5"
@@ -68,7 +70,9 @@ export default function Header() {
 
               {/* Brand name — white bold + orange dot */}
               <span className="font-extrabold text-xl tracking-tight font-mono leading-none">
-                <span className="text-white group-hover:text-orange-50 transition-colors duration-300">TroyTech</span>
+                <span className="text-white group-hover:text-orange-50 transition-colors duration-300">
+                  TroyTech
+                </span>
                 <span className="text-[#F97316] ml-0.5">.</span>
               </span>
             </Link>
@@ -121,15 +125,27 @@ export default function Header() {
         </nav>
 
         {/* ── Mobile menu dialog ───────────────────────────────────────── */}
-        <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden">
+        <Dialog
+          open={mobileMenuOpen}
+          onClose={setMobileMenuOpen}
+          className="lg:hidden"
+        >
           <div className="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm transition-opacity duration-300" />
           <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-[#0a0a0a] border-l border-orange-500/20 px-6 py-6 sm:max-w-sm transition-transform duration-300">
-
             {/* Header */}
             <div className="flex items-center justify-between mb-8">
-              <Link href="/" className="flex items-center gap-3" onClick={() => setMobileMenuOpen(false)}>
+              <Link
+                href="/"
+                className="flex items-center gap-3"
+                onClick={() => setMobileMenuOpen(false)}
+              >
                 <div className="relative h-10 w-10 rounded-xl overflow-hidden bg-[#1a1a1a] ring-1 ring-orange-500/40 shadow-[0_0_12px_rgba(249,115,22,0.2)]">
-                  <Image src="/logo/logo.png" alt="TroyTech logo" fill className="object-contain p-1.5" />
+                  <Image
+                    src="/logo/logo.png"
+                    alt="TroyTech logo"
+                    fill
+                    className="object-contain p-1.5"
+                  />
                 </div>
                 <span className="font-extrabold text-base font-mono">
                   <span className="text-white">TroyTech</span>
@@ -154,9 +170,11 @@ export default function Header() {
                   href={item.href}
                   onClick={() => setMobileMenuOpen(false)}
                   className={`-mx-3 flex items-center rounded-xl px-3 py-3 text-base font-mono font-medium transition-all duration-200
-                    ${isActive(pathname, item.href)
-                      ? "text-orange-400 bg-orange-950/40 border border-orange-500/20"
-                      : "text-gray-300 hover:bg-orange-950/30 hover:text-orange-400 border border-transparent"}`}
+                    ${
+                      isActive(pathname, item.href)
+                        ? "text-orange-400 bg-orange-950/40 border border-orange-500/20"
+                        : "text-gray-300 hover:bg-orange-950/30 hover:text-orange-400 border border-transparent"
+                    }`}
                 >
                   {item.name}
                 </Link>
@@ -186,7 +204,6 @@ export default function Header() {
                 <ModeToggle />
               </div>
             </div>
-
           </DialogPanel>
         </Dialog>
       </header>
