@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { Activity, Clock, Cpu, Layers, BarChart3, Zap } from "lucide-react";
+import { Activity, Clock, Cpu, Layers, Zap, Shield } from "lucide-react";
 
 interface Feature {
   name: string;
@@ -24,15 +24,15 @@ const features: Feature[] = [
     description:
       "Install, configure & troubleshoot software applications, hardware training and troubleshooting including operating systems, productivity software, and hardware components.",
     icon: Cpu,
-    gradient: "from-blue-500 to-cyan-500",
+    gradient: "from-orange-500 to-amber-500",
     category: "IT Services",
   },
   {
     name: "Graphics Designing",
     description:
-      "A showcase of my graphic design projects highlighting creativity, branding, and visual communication skills.",
+      "A showcase of graphic design projects highlighting creativity, branding, and visual communication skills.",
     icon: Clock,
-    gradient: "from-emerald-500 to-green-500",
+    gradient: "from-rose-500 to-pink-600",
     category: "Design",
   },
   {
@@ -48,16 +48,16 @@ const features: Feature[] = [
     description:
       "Professional printing solutions, modern online application development, and expert IT consultancy services to help businesses enhance their brand and embrace digital transformation.",
     icon: Zap,
-    gradient: "from-rose-500 to-pink-600",
+    gradient: "from-orange-600 to-red-500",
     category: "Consultancy",
   },
   {
-    name: "Loan & Financing",
+    name: "IT Security & Network Setup",
     description:
-      "Flexible loan and financing solutions that help individuals and businesses access funds and achieve financial goals.",
-    icon: BarChart3,
-    gradient: "from-cyan-500 to-sky-600",
-    category: "Finance",
+      "Protect your infrastructure with robust cybersecurity measures, CCTV installation, network configuration, and reliable IT support.",
+    icon: Shield,
+    gradient: "from-gray-500 to-gray-700",
+    category: "Security",
   },
 ];
 
@@ -65,24 +65,26 @@ export default function FeatureSectionThree() {
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
 
   return (
-    <div className="relative bg-[#0F172A] border-t border-cyan-500/10 py-24 sm:py-32 overflow-hidden transition-colors duration-300">
+    <div className="relative bg-[#1a1a1a] border-t border-orange-500/10 py-24 sm:py-32 overflow-hidden transition-colors duration-300">
       {/* Radial glow — center */}
-      <div className="absolute inset-0 pointer-events-none"
-        style={{ background: "radial-gradient(ellipse 80% 60% at 50% 50%, rgba(6,182,212,0.05) 0%, transparent 70%)" }} />
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{ background: "radial-gradient(ellipse 80% 60% at 50% 50%, rgba(249,115,22,0.05) 0%, transparent 70%)" }}
+      />
       <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
 
         {/* Header */}
         <div className="mx-auto max-w-2xl text-center">
           <div className="flex justify-center mb-6">
-            <div className="h-px w-12 bg-gradient-to-r from-transparent via-cyan-500 to-transparent self-center" />
-            <h2 className="mx-4 text-base font-semibold text-cyan-400 uppercase tracking-widest font-mono">
+            <div className="h-px w-12 bg-gradient-to-r from-transparent via-orange-500 to-transparent self-center" />
+            <h2 className="mx-4 text-base font-semibold text-orange-400 uppercase tracking-widest font-mono">
               TroyTech Features
             </h2>
-            <div className="h-px w-12 bg-gradient-to-r from-transparent via-cyan-500 to-transparent self-center" />
+            <div className="h-px w-12 bg-gradient-to-r from-transparent via-orange-500 to-transparent self-center" />
           </div>
 
           <p className="mt-2 text-4xl font-bold tracking-tight text-white">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-emerald-400">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-300">
               Powerful Capabilities
             </span>{" "}
             for Modern Future
@@ -92,8 +94,7 @@ export default function FeatureSectionThree() {
             Computer Training, Software Installation, Hardware Services,
             Website Designing, Hosting, Mobile Apps, Phone Flashing &amp; Updates,
             Computer Repair, Graphics Designing, Printing Solutions, CCTV
-            Installation, Network Setup, Data Recovery, IT Consultancy,
-            Loans &amp; Financing, and more.
+            Installation, Network Setup, Data Recovery, IT Consultancy, and more.
           </p>
         </div>
 
@@ -102,17 +103,17 @@ export default function FeatureSectionThree() {
           {features.map((feature) => (
             <div
               key={feature.name}
-              className="group relative overflow-hidden rounded-2xl bg-[#020617] border border-cyan-500/10 shadow-[0_4px_24px_rgba(0,0,0,0.4)] backdrop-blur-sm hover:-translate-y-1.5 hover:border-cyan-500/40 hover:shadow-[0_8px_40px_rgba(6,182,212,0.12)] transition-all duration-300 ease-out"
+              className="group relative overflow-hidden rounded-2xl bg-[#0a0a0a] border border-orange-500/10 shadow-[0_4px_24px_rgba(0,0,0,0.5)] backdrop-blur-sm hover:-translate-y-1.5 hover:border-orange-500/40 hover:shadow-[0_8px_40px_rgba(249,115,22,0.12)] transition-all duration-300 ease-out"
               onMouseEnter={() => setHoveredCard(feature.name)}
               onMouseLeave={() => setHoveredCard(null)}
             >
               {/* Subtle corner glow */}
-              <div className="absolute top-0 right-0 w-32 h-32 -mr-12 -mt-12 rounded-full bg-cyan-500/5 blur-2xl pointer-events-none" />
+              <div className="absolute top-0 right-0 w-32 h-32 -mr-12 -mt-12 rounded-full bg-orange-500/5 blur-2xl pointer-events-none" />
 
               <div className="p-6">
                 {/* Category badge */}
                 <div className="absolute top-5 right-5">
-                  <span className="inline-flex items-center rounded-full bg-cyan-950/60 border border-cyan-500/20 px-2.5 py-0.5 text-xs font-mono font-medium text-cyan-400">
+                  <span className="inline-flex items-center rounded-full bg-orange-950/60 border border-orange-500/20 px-2.5 py-0.5 text-xs font-mono font-medium text-orange-400">
                     {feature.category}
                   </span>
                 </div>
@@ -124,7 +125,7 @@ export default function FeatureSectionThree() {
                   <feature.icon className="h-6 w-6 text-white" />
                 </div>
 
-                <h3 className="text-lg font-semibold text-white group-hover:text-cyan-400 transition-colors duration-300 pr-16">
+                <h3 className="text-lg font-semibold text-white group-hover:text-orange-400 transition-colors duration-300 pr-16">
                   {feature.name}
                 </h3>
 
@@ -132,7 +133,7 @@ export default function FeatureSectionThree() {
                   {feature.description}
                 </p>
 
-                <div className="mt-5 inline-flex items-center text-sm font-medium text-cyan-400/70 group-hover:text-cyan-400 transition-colors duration-300">
+                <div className="mt-5 inline-flex items-center text-sm font-medium text-orange-400/70 group-hover:text-orange-400 transition-colors duration-300">
                   <span>Learn more</span>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -160,10 +161,10 @@ export default function FeatureSectionThree() {
 
         {/* Buttons */}
         <div className="mt-20 flex justify-center gap-3">
-          <button className="rounded-xl px-5 py-2.5 text-sm font-semibold text-white bg-transparent border border-[#06B6DA]/50 hover:border-[#06B6DA] hover:shadow-[0_0_16px_rgba(6,182,218,0.25)] hover:scale-[1.03] active:scale-[0.97] transition-all duration-200">
+          <button className="rounded-xl px-5 py-2.5 text-sm font-semibold text-white bg-transparent border border-orange-500/50 hover:border-orange-400 hover:shadow-[0_0_16px_rgba(249,115,22,0.25)] hover:scale-[1.03] active:scale-[0.97] transition-all duration-200">
             View documentation
           </button>
-          <button className="rounded-xl px-5 py-2.5 text-sm font-semibold text-gray-950 bg-[#06B6DA] shadow-[0_0_14px_rgba(6,182,218,0.4)] hover:brightness-110 hover:scale-[1.04] hover:shadow-[0_0_26px_rgba(6,182,218,0.6)] active:scale-[0.97] transition-all duration-200">
+          <button className="rounded-xl px-5 py-2.5 text-sm font-semibold text-black bg-[#F97316] shadow-[0_0_14px_rgba(249,115,22,0.4)] hover:brightness-110 hover:scale-[1.04] hover:shadow-[0_0_26px_rgba(249,115,22,0.6)] active:scale-[0.97] transition-all duration-200">
             Get started
           </button>
         </div>

@@ -1,13 +1,12 @@
 import type { Metadata } from "next";
 import FeatureSectionThree from '@/components/featured-sec'
 import HeroSectionThree from '@/components/herosection'
-import LoansPage from '@/components/loans'
 import React from 'react'
 
 export const metadata: Metadata = {
-  title: "TroyTech Solutions | IT Services & Loans in Kampala, Uganda",
+  title: "TroyTech Solutions | IT Services in Kampala, Uganda",
   description:
-    "TroyTech Solutions — Uganda's trusted IT company in Kampala. Software development, computer training, graphics design, CCTV installation, IT security, and loan services across Uganda.",
+    "TroyTech Solutions — Uganda's trusted IT company in Kampala. Software development, computer training, graphics design, CCTV installation, IT security, and digital solutions across Uganda.",
   keywords: [
     "IT company Uganda",
     "IT company Kampala",
@@ -22,9 +21,6 @@ export const metadata: Metadata = {
     "CCTV installation Uganda",
     "network setup Uganda",
     "IT security Uganda",
-    "loan services Uganda",
-    "personal loans Uganda",
-    "business loans Kampala",
     "IT solutions Uganda",
     "tech company Uganda",
     "mobile app development Uganda",
@@ -48,9 +44,9 @@ export const metadata: Metadata = {
   },
   robots: { index: true, follow: true },
   openGraph: {
-    title: "TroyTech Solutions | IT Services & Loans in Kampala, Uganda",
+    title: "TroyTech Solutions | IT Services in Kampala, Uganda",
     description:
-      "TroyTech Solutions — Uganda's trusted IT company in Kampala. Software development, computer training, graphics design, CCTV, IT security, and loan services across Uganda.",
+      "TroyTech Solutions — Uganda's trusted IT company in Kampala. Software development, computer training, graphics design, CCTV, and IT security across Uganda.",
     url: "https://www.troytech.xyz",
     siteName: "TroyTech Solutions",
     images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "TroyTech Solutions — IT Services Uganda" }],
@@ -59,9 +55,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "TroyTech Solutions | IT Services & Loans in Kampala, Uganda",
+    title: "TroyTech Solutions | IT Services in Kampala, Uganda",
     description:
-      "Uganda's trusted IT company. Software development, computer training, graphics design, CCTV, and loans in Kampala.",
+      "Uganda's trusted IT company. Software development, computer training, graphics design, and CCTV in Kampala.",
     images: ["/og-image.png"],
   },
 };
@@ -70,8 +66,7 @@ export default function page() {
   return (
     <div>
       <HeroSectionThree />
-      <FeatureSectionThree/>
-      <LoansPage/>
+      <FeatureSectionThree />
     </div>
   )
 }

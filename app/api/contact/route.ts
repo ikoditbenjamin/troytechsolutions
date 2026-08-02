@@ -140,19 +140,19 @@ function buildNotificationHtml(name: string, email: string, message: string): st
       <head>
         <meta charset="UTF-8" />
         <style>
-          body  { font-family:'Segoe UI',Arial,sans-serif; background:#020617; color:#e2e8f0; margin:0; padding:0; }
-          .wrap { max-width:600px; margin:40px auto; background:#0F172A; border-radius:16px; overflow:hidden;
-                  border:1px solid rgba(6,182,212,0.2); }
-          .hdr  { background:linear-gradient(135deg,#06B6DA,#0891b2); padding:32px 40px; }
-          .hdr h1 { margin:0; font-size:22px; color:#020617; font-weight:700; }
+          body  { font-family:'Segoe UI',Arial,sans-serif; background:#0a0a0a; color:#e2e8f0; margin:0; padding:0; }
+          .wrap { max-width:600px; margin:40px auto; background:#1a1a1a; border-radius:16px; overflow:hidden;
+                  border:1px solid rgba(249,115,22,0.2); }
+          .hdr  { background:linear-gradient(135deg,#F97316,#ea580c); padding:32px 40px; }
+          .hdr h1 { margin:0; font-size:22px; color:#000; font-weight:700; }
           .body { padding:32px 40px; }
           .label{ font-size:11px; text-transform:uppercase; letter-spacing:.08em; color:#64748b;
                   font-weight:600; margin-bottom:4px; }
           .value{ font-size:15px; color:#e2e8f0; margin:0 0 20px; padding:12px 16px;
-                  background:#020617; border-radius:8px; border:1px solid rgba(6,182,212,0.12); }
+                  background:#0a0a0a; border-radius:8px; border:1px solid rgba(249,115,22,0.12); }
           .msg  { white-space:pre-wrap; line-height:1.7; }
           .ftr  { padding:20px 40px; text-align:center; font-size:12px; color:#475569;
-                  border-top:1px solid rgba(6,182,212,0.1); }
+                  border-top:1px solid rgba(249,115,22,0.1); }
         </style>
       </head>
       <body>
@@ -162,7 +162,7 @@ function buildNotificationHtml(name: string, email: string, message: string): st
             <p class="label">Full Name</p>
             <p class="value">${name}</p>
             <p class="label">Email Address</p>
-            <p class="value"><a href="mailto:${email}" style="color:#06B6DA;">${email}</a></p>
+            <p class="value"><a href="mailto:${email}" style="color:#F97316;">${email}</a></p>
             <p class="label">Message</p>
             <p class="value msg">${message}</p>
           </div>
@@ -180,24 +180,24 @@ function buildAutoReplyHtml(name: string): string {
       <head>
         <meta charset="UTF-8" />
         <style>
-          body  { font-family:'Segoe UI',Arial,sans-serif; background:#020617; color:#e2e8f0; margin:0; padding:0; }
-          .wrap { max-width:600px; margin:40px auto; background:#0F172A; border-radius:16px; overflow:hidden;
-                  border:1px solid rgba(6,182,212,0.2); }
-          .hdr  { background:linear-gradient(135deg,#06B6DA,#34d399); padding:32px 40px; text-align:center; }
-          .hdr h1 { margin:0 0 6px; font-size:24px; color:#020617; font-weight:800; }
-          .hdr p  { margin:0; font-size:14px; color:#0F172A; opacity:.85; }
+          body  { font-family:'Segoe UI',Arial,sans-serif; background:#0a0a0a; color:#e2e8f0; margin:0; padding:0; }
+          .wrap { max-width:600px; margin:40px auto; background:#1a1a1a; border-radius:16px; overflow:hidden;
+                  border:1px solid rgba(249,115,22,0.2); }
+          .hdr  { background:linear-gradient(135deg,#F97316,#ea580c); padding:32px 40px; text-align:center; }
+          .hdr h1 { margin:0 0 6px; font-size:24px; color:#000; font-weight:800; }
+          .hdr p  { margin:0; font-size:14px; color:#1a1a1a; opacity:.85; }
           .body { padding:36px 40px; }
           .body p { line-height:1.8; color:#cbd5e1; font-size:15px; }
           .cta  { display:inline-block; margin:24px 0; padding:14px 32px;
-                  background:linear-gradient(135deg,#06B6DA,#0891b2);
-                  color:#020617 !important; font-weight:700; font-size:14px;
+                  background:linear-gradient(135deg,#F97316,#ea580c);
+                  color:#000 !important; font-weight:700; font-size:14px;
                   border-radius:12px; text-decoration:none; }
-          .info { background:#020617; border:1px solid rgba(6,182,212,0.12);
+          .info { background:#0a0a0a; border:1px solid rgba(249,115,22,0.12);
                   border-radius:12px; padding:20px 24px; margin:24px 0; }
           .info p{ margin:4px 0; font-size:13px; color:#94a3b8; }
-          .info a{ color:#06B6DA; text-decoration:none; }
+          .info a{ color:#F97316; text-decoration:none; }
           .ftr  { padding:20px 40px; text-align:center; font-size:12px; color:#475569;
-                  border-top:1px solid rgba(6,182,212,0.1); }
+                  border-top:1px solid rgba(249,115,22,0.1); }
         </style>
       </head>
       <body>
@@ -207,7 +207,7 @@ function buildAutoReplyHtml(name: string): string {
             <p>We'll get back to you shortly.</p>
           </div>
           <div class="body">
-            <p>Hi <strong style="color:#06B6DA;">${name}</strong>,</p>
+            <p>Hi <strong style="color:#F97316;">${name}</strong>,</p>
             <p>
               Thank you for reaching out to <strong>TroyTech Solutions</strong>! We've received
               your message and a member of our team will respond within <strong>24 hours</strong>.
@@ -226,7 +226,7 @@ function buildAutoReplyHtml(name: string): string {
           </div>
           <div class="ftr">
             © 2026 TroyTech Solutions ·
-            <a href="https://www.troytech.xyz" style="color:#06B6DA;">www.troytech.xyz</a>
+            <a href="https://www.troytech.xyz" style="color:#F97316;">www.troytech.xyz</a>
           </div>
         </div>
       </body>

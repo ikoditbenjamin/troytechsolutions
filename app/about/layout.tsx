@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "About TroyTech Solutions | IT Company in Kampala, Uganda",
   description:
-    "TroyTech Solutions is a leading IT company in Kampala, Uganda. Meet our team of developers, designers, and financial experts dedicated to transforming businesses across Uganda.",
+    "TroyTech Solutions is a leading IT company in Kampala, Uganda. Meet our team of developers and designers dedicated to transforming businesses across Uganda.",
   keywords: [
     "about TroyTech Solutions",
     "IT company Uganda",
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "About TroyTech Solutions | IT Company in Kampala, Uganda",
     description:
-      "TroyTech Solutions is a leading IT company in Kampala, Uganda. Meet our team of developers, designers, and financial experts dedicated to transforming businesses across Uganda.",
+      "TroyTech Solutions is a leading IT company in Kampala, Uganda. Meet our team of developers and designers dedicated to transforming businesses across Uganda.",
     url: "https://www.troytech.xyz/about",
     siteName: "TroyTech Solutions",
     images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "About TroyTech Solutions Uganda" }],
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "About TroyTech Solutions | IT Company in Kampala, Uganda",
     description:
-      "TroyTech Solutions is a leading IT company in Kampala, Uganda. Meet our team of developers, designers, and financial experts dedicated to transforming businesses across Uganda.",
+      "TroyTech Solutions is a leading IT company in Kampala, Uganda. Meet our team of developers and designers dedicated to transforming businesses across Uganda.",
     images: ["/og-image.png"],
   },
 };

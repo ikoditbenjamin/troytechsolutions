@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Book a Free IT Consultation | TroyTech Solutions Uganda",
   description:
-    "Book a free consultation with TroyTech Solutions, Kampala Uganda. Discuss your software, website, IT security, computer training, design, or loan needs with our expert team.",
+    "Book a free consultation with TroyTech Solutions, Kampala Uganda. Discuss your software, website, IT security, computer training, or design needs with our expert team.",
   keywords: [
     "book IT consultation Uganda",
     "free software consultation Kampala",
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Book a Free IT Consultation | TroyTech Solutions Uganda",
     description:
-      "Book a free consultation with TroyTech Solutions, Kampala Uganda. Discuss your software, website, IT security, or loan needs with our expert team.",
+      "Book a free consultation with TroyTech Solutions, Kampala Uganda. Discuss your software, website, IT security, or design needs with our expert team.",
     url: "https://www.troytech.xyz/booking",
     siteName: "TroyTech Solutions",
     images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Book IT Consultation TroyTech Uganda" }],
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Book a Free IT Consultation | TroyTech Solutions Uganda",
     description:
-      "Book a free consultation with TroyTech Solutions, Kampala Uganda. Discuss your software, website, IT security, or loan needs.",
+      "Book a free consultation with TroyTech Solutions, Kampala Uganda. Discuss your software, website, IT security, or design needs.",
     images: ["/og-image.png"],
   },
 };

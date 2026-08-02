@@ -10,19 +10,19 @@ const KB: { patterns: RegExp[]; answer: string }[] = [
   {
     patterns: [/^(hi|hello|hey|good\s*(morning|afternoon|evening)|howdy|sup)/i],
     answer:
-      "👋 Hello! I'm **TroyBot**, TroyTech Solutions' virtual assistant. I can help you with information about our IT services, loans, pricing, team, location, and more. What would you like to know?",
+      "👋 Hello! I'm **TroyBot**, TroyTech Solutions' virtual assistant. I can help you with information about our IT services, pricing, team, location, and more. What would you like to know?",
   },
   // What is TroyTech
   {
     patterns: [/what\s+is\s+troy\s*tech|about\s+troy\s*tech|tell\s+me\s+about/i],
     answer:
-      "**TroyTech Solutions** is a professional IT services and financial solutions company based in **Kampala, Uganda**. We offer:\n\n• 💻 Software & App Development\n• 🔒 IT Security & System Management\n• 🎨 Graphics & Digital Design\n• 🎓 Computer Training\n• 🧠 IT Consultancy\n• 💰 Loan & Financial Services\n\nWe serve individuals, startups, and enterprises across Uganda and beyond.",
+      "**TroyTech Solutions** is a professional IT services company based in **Kampala, Uganda**. We offer:\n\n• 💻 Software & App Development\n• 🔒 IT Security & System Management\n• 🎨 Graphics & Digital Design\n• 🎓 Computer Training\n• 🧠 IT Consultancy\n• 📡 CCTV & Network Setup\n\nWe serve individuals, startups, and enterprises across Uganda and beyond.",
   },
   // Services
   {
     patterns: [/service|what\s+do\s+you\s+(do|offer|provide)|capabilities/i],
     answer:
-      "We offer a wide range of services:\n\n**IT Services:**\n• 💻 Software & App Development (websites, mobile apps, custom software)\n• 🔒 IT Security & System Management\n• 🎨 Graphics & Digital Design (logos, branding, banners)\n• 🎓 Computer Training (hands-on digital skills)\n• 🖨️ Printing Solutions & Online Applications\n• 🧠 IT Consultancy\n• 📡 CCTV Installation & Network Setup\n• 🔧 Computer Repair & Data Recovery\n\n**Financial Services:**\n• 💰 Personal, Business, Education & Home Loans\n\nWant details on any specific service?",
+      "We offer a wide range of IT services:\n\n• 💻 Software & App Development (websites, mobile apps, custom software)\n• 🔒 IT Security & System Management\n• 🎨 Graphics & Digital Design (logos, branding, banners)\n• 🎓 Computer Training (hands-on digital skills)\n• 🖨️ Printing Solutions & Online Applications\n• 🧠 IT Consultancy\n• 📡 CCTV Installation & Network Setup\n• 🔧 Computer Repair & Data Recovery\n\nWant details on any specific service?",
   },
   // Software development
   {
@@ -48,17 +48,11 @@ const KB: { patterns: RegExp[]; answer: string }[] = [
     answer:
       "Our **IT Security & System Management** services include:\n\n• 🔒 Network security setup & monitoring\n• 🛡️ Data protection & backup solutions\n• 📡 CCTV installation & surveillance\n• 🔧 System maintenance & support\n• 🌐 Network setup & configuration\n• 🚨 Cybersecurity consulting\n\nWe help safeguard your business from digital threats. Get a free security assessment today!",
   },
-  // Loans
-  {
-    patterns: [/loan|financ|borrow|credit|money|fund|invest/i],
-    answer:
-      "We offer flexible **Loan & Financial Services**:\n\n• 👤 **Personal Loans** — for unexpected expenses or personal goals\n• 🏢 **Business Loans** — capital to grow your business\n• 🎓 **Education Loans** — invest in your academic journey\n• 🏠 **Home Loans** — affordable home financing\n\n**How to apply:**\n1. Fill out our online application\n2. Our team verifies your details\n3. Get fast approval\n4. Funds transferred to your account\n\nContact us on **+256 747 447 447** to discuss your loan needs!",
-  },
   // Pricing
   {
     patterns: [/price|cost|how\s+much|fee|rate|charge|budget|afford/i],
     answer:
-      "Our pricing depends on the scope of your project. Here's a general guide:\n\n• 🌐 **Basic website** — from UGX 500,000\n• 📱 **Mobile app** — from UGX 2,000,000\n• 🎨 **Logo design** — from UGX 150,000\n• 🎓 **Computer training** — from UGX 100,000/session\n• 💰 **Loans** — flexible terms, discuss with our team\n\nFor an accurate quote, **book a free consultation** at `/booking` or call **+256 747 447 447**.",
+      "Our pricing depends on the scope of your project. Here's a general guide:\n\n• 🌐 **Basic website** — from UGX 500,000\n• 📱 **Mobile app** — from UGX 2,000,000\n• 🎨 **Logo design** — from UGX 150,000\n• 🎓 **Computer training** — from UGX 100,000/session\n• 📡 **CCTV & Network Setup** — site-based quote\n\nFor an accurate quote, **book a free consultation** at `/booking` or call **+256 747 447 447**.",
   },
   // Location
   {
@@ -117,12 +111,12 @@ const KB: { patterns: RegExp[]; answer: string }[] = [
 ];
 
 const FALLBACK =
-  "I'm not sure about that specific question. Here's how you can get the right answer:\n\n📞 **Call us:** +256 747 447 447\n📧 **Email:** techtroy28@gmail.com\n💬 **WhatsApp:** +256 782 391 512\n\nOr try asking about: *services, pricing, loans, location, team, booking, or contact*.";
+  "I'm not sure about that specific question. Here's how you can get the right answer:\n\n📞 **Call us:** +256 747 447 447\n📧 **Email:** techtroy28@gmail.com\n💬 **WhatsApp:** +256 782 391 512\n\nOr try asking about: *services, pricing, location, team, booking, or contact*.";
 
 const SUGGESTIONS = [
   "What services do you offer?",
   "How much does a website cost?",
-  "Tell me about your loans",
+  "Do you do CCTV installation?",
   "Where are you located?",
   "How do I book a consultation?",
   "Who is on your team?",
@@ -173,7 +167,7 @@ export default function ChatBot() {
     {
       id: 1,
       role: "bot",
-      text: "👋 Hi! I'm **TroyBot**, your TroyTech assistant. Ask me anything about our IT services, loans, pricing, team, or location!",
+      text: "👋 Hi! I'm **TroyBot**, your TroyTech assistant. Ask me anything about our IT services, pricing, team, or location!",
       time: formatTime(),
     },
   ]);
@@ -238,9 +232,9 @@ export default function ChatBot() {
         onClick={() => { setOpen(true); setMin(false); setUnread(0); }}
         aria-label="Open chat"
         className={`fixed bottom-6 right-6 z-[9999] h-14 w-14 rounded-full flex items-center justify-center
-          bg-gradient-to-br from-[#06B6DA] to-[#0891b2]
-          shadow-[0_0_0_4px_rgba(6,182,212,0.2),0_8px_32px_rgba(6,182,212,0.45)]
-          hover:scale-110 hover:shadow-[0_0_0_6px_rgba(6,182,212,0.25),0_12px_40px_rgba(6,182,212,0.6)]
+          bg-gradient-to-br from-[#F97316] to-[#ea580c]
+          shadow-[0_0_0_4px_rgba(249,115,22,0.2),0_8px_32px_rgba(249,115,22,0.45)]
+          hover:scale-110 hover:shadow-[0_0_0_6px_rgba(249,115,22,0.28),0_12px_40px_rgba(249,115,22,0.6)]
           active:scale-95 transition-all duration-300
           ${open ? "opacity-0 pointer-events-none scale-75" : "opacity-100 scale-100"}`}
       >
@@ -257,22 +251,22 @@ export default function ChatBot() {
         className={`fixed bottom-6 right-6 z-[9999] flex flex-col
           w-[360px] sm:w-[380px]
           rounded-2xl overflow-hidden
-          bg-[#0F172A] border border-cyan-500/20
-          shadow-[0_0_0_1px_rgba(6,182,212,0.1),0_24px_60px_rgba(0,0,0,0.6)]
+          bg-[#1a1a1a] border border-orange-500/20
+          shadow-[0_0_0_1px_rgba(249,115,22,0.1),0_24px_60px_rgba(0,0,0,0.6)]
           transition-all duration-300 ease-out origin-bottom-right
           ${open ? "opacity-100 scale-100 translate-y-0" : "opacity-0 scale-90 translate-y-4 pointer-events-none"}
           ${minimized ? "h-[64px]" : "h-[560px] max-h-[80vh]"}`}
       >
         {/* ── Header ─────────────────────────────────────────────────── */}
-        <div className="flex items-center justify-between px-4 py-3 bg-gradient-to-r from-[#06B6DA]/20 to-[#0891b2]/10 border-b border-cyan-500/15 shrink-0">
+        <div className="flex items-center justify-between px-4 py-3 bg-gradient-to-r from-[#F97316]/20 to-[#ea580c]/10 border-b border-orange-500/15 shrink-0">
           <div className="flex items-center gap-3">
-            <div className="relative h-9 w-9 rounded-full bg-gradient-to-br from-[#06B6DA] to-[#0891b2] flex items-center justify-center shadow-[0_0_12px_rgba(6,182,212,0.5)]">
+            <div className="relative h-9 w-9 rounded-full bg-gradient-to-br from-[#F97316] to-[#ea580c] flex items-center justify-center shadow-[0_0_12px_rgba(249,115,22,0.5)]">
               <Bot className="h-5 w-5 text-white" />
-              <span className="absolute bottom-0 right-0 h-2.5 w-2.5 rounded-full bg-emerald-400 border-2 border-[#0F172A]" />
+              <span className="absolute bottom-0 right-0 h-2.5 w-2.5 rounded-full bg-green-400 border-2 border-[#1a1a1a]" />
             </div>
             <div>
               <p className="text-sm font-semibold text-white leading-none">TroyBot</p>
-              <p className="text-xs text-emerald-400 mt-0.5">Online · TroyTech Assistant</p>
+              <p className="text-xs text-green-400 mt-0.5">Online · TroyTech Assistant</p>
             </div>
           </div>
           <div className="flex items-center gap-1">
@@ -296,7 +290,7 @@ export default function ChatBot() {
         {!minimized && (
           <>
             {/* ── Messages ─────────────────────────────────────────────── */}
-            <div className="flex-1 overflow-y-auto px-4 py-4 space-y-4 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-cyan-500/20">
+            <div className="flex-1 overflow-y-auto px-4 py-4 space-y-4 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-orange-500/20">
 
               {messages.map((msg) => (
                 <div
@@ -306,12 +300,12 @@ export default function ChatBot() {
                   {/* Avatar */}
                   <div className={`shrink-0 h-7 w-7 rounded-full flex items-center justify-center mt-0.5
                     ${msg.role === "bot"
-                      ? "bg-gradient-to-br from-[#06B6DA] to-[#0891b2] shadow-[0_0_8px_rgba(6,182,212,0.4)]"
-                      : "bg-[#1e293b] border border-cyan-500/20"}`}
+                      ? "bg-gradient-to-br from-[#F97316] to-[#ea580c] shadow-[0_0_8px_rgba(249,115,22,0.4)]"
+                      : "bg-[#262626] border border-orange-500/20"}`}
                   >
                     {msg.role === "bot"
                       ? <Bot className="h-3.5 w-3.5 text-white" />
-                      : <User className="h-3.5 w-3.5 text-cyan-400" />}
+                      : <User className="h-3.5 w-3.5 text-orange-400" />}
                   </div>
 
                   {/* Bubble */}
@@ -319,8 +313,8 @@ export default function ChatBot() {
                     <div
                       className={`px-3.5 py-2.5 rounded-2xl text-sm leading-relaxed
                         ${msg.role === "bot"
-                          ? "bg-[#1e293b] text-gray-200 rounded-tl-sm border border-cyan-500/10"
-                          : "bg-gradient-to-br from-[#06B6DA] to-[#0891b2] text-white rounded-tr-sm shadow-[0_0_12px_rgba(6,182,212,0.3)]"}`}
+                          ? "bg-[#262626] text-gray-200 rounded-tl-sm border border-orange-500/10"
+                          : "bg-gradient-to-br from-[#F97316] to-[#ea580c] text-white rounded-tr-sm shadow-[0_0_12px_rgba(249,115,22,0.3)]"}`}
                       dangerouslySetInnerHTML={{ __html: renderMarkdown(msg.text) }}
                     />
                     <span className="text-[10px] text-gray-600 px-1">{msg.time}</span>
@@ -331,14 +325,14 @@ export default function ChatBot() {
               {/* Typing indicator */}
               {typing && (
                 <div className="flex gap-2.5">
-                  <div className="shrink-0 h-7 w-7 rounded-full bg-gradient-to-br from-[#06B6DA] to-[#0891b2] flex items-center justify-center shadow-[0_0_8px_rgba(6,182,212,0.4)]">
+                  <div className="shrink-0 h-7 w-7 rounded-full bg-gradient-to-br from-[#F97316] to-[#ea580c] flex items-center justify-center shadow-[0_0_8px_rgba(249,115,22,0.4)]">
                     <Bot className="h-3.5 w-3.5 text-white" />
                   </div>
-                  <div className="bg-[#1e293b] border border-cyan-500/10 rounded-2xl rounded-tl-sm px-4 py-3 flex items-center gap-1.5">
+                  <div className="bg-[#262626] border border-orange-500/10 rounded-2xl rounded-tl-sm px-4 py-3 flex items-center gap-1.5">
                     {[0, 1, 2].map((i) => (
                       <span
                         key={i}
-                        className="h-1.5 w-1.5 rounded-full bg-cyan-400 animate-bounce"
+                        className="h-1.5 w-1.5 rounded-full bg-orange-400 animate-bounce"
                         style={{ animationDelay: `${i * 150}ms` }}
                       />
                     ))}
@@ -356,7 +350,7 @@ export default function ChatBot() {
                   <button
                     key={s}
                     onClick={() => sendMessage(s)}
-                    className="text-xs px-2.5 py-1.5 rounded-full bg-cyan-950/60 border border-cyan-500/20 text-cyan-300 hover:bg-cyan-500/20 hover:border-cyan-500/50 hover:text-white transition-all duration-200"
+                    className="text-xs px-2.5 py-1.5 rounded-full bg-orange-950/60 border border-orange-500/20 text-orange-300 hover:bg-orange-500/20 hover:border-orange-500/50 hover:text-white transition-all duration-200"
                   >
                     {s}
                   </button>
@@ -365,8 +359,8 @@ export default function ChatBot() {
             )}
 
             {/* ── Input ────────────────────────────────────────────────── */}
-            <div className="px-4 pb-4 pt-2 border-t border-cyan-500/10 shrink-0">
-              <div className="flex items-center gap-2 bg-[#020617] border border-cyan-500/20 rounded-xl px-3 py-2 focus-within:border-cyan-500/50 focus-within:shadow-[0_0_12px_rgba(6,182,212,0.1)] transition-all duration-200">
+            <div className="px-4 pb-4 pt-2 border-t border-orange-500/10 shrink-0">
+              <div className="flex items-center gap-2 bg-[#0a0a0a] border border-orange-500/20 rounded-xl px-3 py-2 focus-within:border-orange-500/50 focus-within:shadow-[0_0_12px_rgba(249,115,22,0.1)] transition-all duration-200">
                 <input
                   ref={inputRef}
                   type="text"
@@ -381,14 +375,14 @@ export default function ChatBot() {
                   disabled={!input.trim() || typing}
                   className={`h-8 w-8 rounded-lg flex items-center justify-center transition-all duration-200
                     ${input.trim() && !typing
-                      ? "bg-[#06B6DA] text-white shadow-[0_0_10px_rgba(6,182,212,0.4)] hover:brightness-110 hover:scale-105 active:scale-95"
+                      ? "bg-[#F97316] text-white shadow-[0_0_10px_rgba(249,115,22,0.4)] hover:brightness-110 hover:scale-105 active:scale-95"
                       : "bg-gray-800 text-gray-600 cursor-not-allowed"}`}
                 >
                   <Send className="h-4 w-4" />
                 </button>
               </div>
               <p className="text-center text-[10px] text-gray-600 mt-2">
-                Powered by TroyTech · <a href="/contact" className="text-cyan-500/70 hover:text-cyan-400 transition-colors">Contact us</a>
+                Powered by TroyTech · <a href="/contact" className="text-orange-500/70 hover:text-orange-400 transition-colors">Contact us</a>
               </p>
             </div>
           </>

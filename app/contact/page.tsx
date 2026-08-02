@@ -15,9 +15,14 @@ import {
   Github,
 } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
-
-// ── CHANGED: Turnstile widget + its ref type, used for verification + reset ──
 import { Turnstile, TurnstileInstance } from "@marsidev/react-turnstile";
+import HeroParallaxSlider from "@/components/HeroParallaxSlider";
+
+const HERO_IMAGES = [
+  "/contact/contact1.jpg",
+  "/contact/contact2.jpg",
+  "/contact/contact3.jpg",
+];
 
 const socialLinks = [
   { icon: Linkedin, label: "LinkedIn", href: "#", hover: "hover:bg-blue-600" },
@@ -118,28 +123,23 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#020617]">
+    <div className="min-h-screen bg-[#0a0a0a]">
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
-      <section className="relative bg-[#0F172A] border-b border-cyan-500/10 px-4 py-24 sm:px-6 lg:px-8 overflow-hidden transition-colors duration-300">
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(ellipse 70% 50% at 50% 0%, rgba(6,182,212,0.08) 0%, transparent 70%)",
-          }}
-        />
-        <div className="max-w-3xl mx-auto text-center">
-          {/* eyebrow */}
-          <p className="text-xs font-mono font-semibold text-cyan-400 tracking-widest uppercase mb-4">
+      <section className="relative border-b border-orange-500/10 overflow-hidden" style={{ minHeight: "420px" }}>
+        <div className="absolute inset-0 z-0">
+          <HeroParallaxSlider images={HERO_IMAGES} parallaxStrength={30} autoPlayMs={5000} />
+        </div>
+        <div className="relative z-10 flex flex-col items-center justify-center text-center px-6 py-28 md:py-36">
+          <p className="text-xs font-mono font-semibold text-orange-400 tracking-widest uppercase mb-4 drop-shadow">
             Contact Us
           </p>
-          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight leading-tight text-white">
+          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight leading-tight text-white drop-shadow-lg">
             Get in{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-emerald-400">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-300">
               Touch
             </span>
           </h1>
-          <p className="mt-5 text-lg text-gray-400 leading-relaxed max-w-xl mx-auto">
+          <p className="mt-5 text-lg text-gray-200 leading-relaxed max-w-xl mx-auto drop-shadow">
             We&apos;d love to hear from you. Send us a message and we&apos;ll
             respond as soon as possible.
           </p>
@@ -147,12 +147,12 @@ export default function ContactPage() {
       </section>
 
       {/* ── Main grid ────────────────────────────────────────────────────── */}
-      <section className="relative bg-[#020617] overflow-hidden transition-colors duration-300">
+      <section className="relative bg-[#0a0a0a] overflow-hidden transition-colors duration-300">
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
             background:
-              "radial-gradient(ellipse 60% 60% at 100% 50%, rgba(6,182,212,0.05) 0%, transparent 70%)",
+              "radial-gradient(ellipse 60% 60% at 100% 50%, rgba(249,115,22,0.05) 0%, transparent 70%)",
           }}
         />
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
@@ -194,17 +194,17 @@ export default function ContactPage() {
                   },
                 ].map(({ icon: Icon, label, value, href }) => (
                   <div key={label} className="flex gap-4 items-start">
-                    <div className="flex-shrink-0 h-10 w-10 rounded-xl bg-cyan-950/60 border border-cyan-500/20 flex items-center justify-center text-cyan-400">
+                    <div className="flex-shrink-0 h-10 w-10 rounded-xl bg-orange-950/60 border border-orange-500/20 flex items-center justify-center text-orange-400">
                       <Icon size={18} />
                     </div>
                     <div>
-                      <p className="text-xs font-mono font-semibold text-cyan-400 tracking-widest uppercase mb-1">
+                      <p className="text-xs font-mono font-semibold text-orange-400 tracking-widest uppercase mb-1">
                         {label}
                       </p>
                       {href ? (
                         <a
                           href={href}
-                          className="text-sm text-gray-300 hover:text-cyan-400 transition-colors duration-200 leading-relaxed"
+                          className="text-sm text-gray-300 hover:text-orange-400 transition-colors duration-200 leading-relaxed"
                         >
                           {value}
                         </a>
@@ -229,7 +229,7 @@ export default function ContactPage() {
                       key={label}
                       href={href}
                       aria-label={label}
-                      className={`h-10 w-10 rounded-xl bg-[#0F172A] border border-cyan-500/10 flex items-center justify-center text-gray-400 hover:text-white hover:border-cyan-500/40 hover:shadow-[0_0_12px_rgba(6,182,218,0.2)] ${hover} transition-all duration-200`}
+                      className={`h-10 w-10 rounded-xl bg-[#1a1a1a] border border-orange-500/10 flex items-center justify-center text-gray-400 hover:text-white hover:border-orange-500/40 hover:shadow-[0_0_12px_rgba(249,115,22,0.2)] ${hover} transition-all duration-200`}
                     >
                       <Icon size={18} />
                     </a>
@@ -237,7 +237,7 @@ export default function ContactPage() {
                   <a
                     href="#"
                     aria-label="WhatsApp"
-                    className="h-10 w-10 rounded-xl bg-[#0F172A] border border-cyan-500/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-green-600 hover:border-green-500/40 transition-all duration-200"
+                    className="h-10 w-10 rounded-xl bg-[#1a1a1a] border border-orange-500/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-green-600 hover:border-green-500/40 transition-all duration-200"
                   >
                     <FaWhatsapp size={18} />
                   </a>
@@ -247,7 +247,7 @@ export default function ContactPage() {
 
             {/* ── Right: form ──────────────────────────────────────────────── */}
             <div>
-              <div className="rounded-2xl bg-[#0F172A] border border-cyan-500/10 shadow-[0_4px_24px_rgba(0,0,0,0.4)] backdrop-blur-sm p-8">
+              <div className="rounded-2xl bg-[#1a1a1a] border border-orange-500/10 shadow-[0_4px_24px_rgba(0,0,0,0.4)] backdrop-blur-sm p-8">
                 <h2 className="text-2xl font-bold text-white tracking-tight mb-1">
                   Send us a Message
                 </h2>
@@ -271,7 +271,7 @@ export default function ContactPage() {
                       onChange={handleChange}
                       placeholder="Your name"
                       required
-                      className="w-full bg-[#020b18] border-cyan-500/20 text-white placeholder:text-gray-600 focus:border-cyan-500/60 focus:ring-cyan-500/20 rounded-xl h-11"
+                      className="w-full bg-[#0a0a0a] border-orange-500/20 text-white placeholder:text-gray-600 focus:border-orange-500/60 focus:ring-orange-500/20 rounded-xl h-11"
                     />
                   </div>
 
@@ -290,7 +290,7 @@ export default function ContactPage() {
                       onChange={handleChange}
                       placeholder="your@email.com"
                       required
-                      className="w-full bg-[#020b18] border-cyan-500/20 text-white placeholder:text-gray-600 focus:border-cyan-500/60 focus:ring-cyan-500/20 rounded-xl h-11"
+                      className="w-full bg-[#0a0a0a] border-orange-500/20 text-white placeholder:text-gray-600 focus:border-orange-500/60 focus:ring-orange-500/20 rounded-xl h-11"
                     />
                   </div>
 
@@ -309,7 +309,7 @@ export default function ContactPage() {
                       placeholder="Tell us about your project..."
                       required
                       rows={5}
-                      className="w-full px-4 py-3 rounded-xl bg-[#020b18] border border-cyan-500/20 text-white placeholder:text-gray-600 focus:outline-none focus:border-cyan-500/60 focus:ring-2 focus:ring-cyan-500/10 resize-none text-sm leading-relaxed transition-colors"
+                      className="w-full px-4 py-3 rounded-xl bg-[#0a0a0a] border border-orange-500/20 text-white placeholder:text-gray-600 focus:outline-none focus:border-orange-500/60 focus:ring-2 focus:ring-orange-500/10 resize-none text-sm leading-relaxed transition-colors"
                     />
                   </div>
 
@@ -371,7 +371,7 @@ export default function ContactPage() {
                   <Button
                     type="submit"
                     disabled={loading || !turnstileToken}
-                    className="w-full rounded-xl h-11 text-sm font-semibold text-gray-950 bg-[#06B6DA] shadow-[0_0_16px_rgba(6,182,218,0.35)] hover:brightness-110 hover:shadow-[0_0_28px_rgba(6,182,218,0.55)] active:scale-[0.98] transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed"
+                    className="w-full rounded-xl h-11 text-sm font-semibold text-black bg-[#F97316] shadow-[0_0_16px_rgba(249,115,22,0.35)] hover:brightness-110 hover:shadow-[0_0_28px_rgba(249,115,22,0.55)] active:scale-[0.98] transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed"
                   >
                     {loading ? (
                       <span className="flex items-center justify-center gap-2">
@@ -405,8 +405,8 @@ export default function ContactPage() {
 
                 {/* Success banner */}
                 {submitted && (
-                  <div className="mt-4 p-3 bg-cyan-500/10 border border-cyan-500/20 rounded-xl">
-                    <p className="text-sm text-cyan-400 font-medium">
+                  <div className="mt-4 p-3 bg-orange-500/10 border border-orange-500/20 rounded-xl">
+                    <p className="text-sm text-orange-400 font-medium">
                       ✅ Message sent! We&apos;ll reply within 24 hours. Check
                       your inbox for a confirmation email.
                     </p>
@@ -419,20 +419,20 @@ export default function ContactPage() {
       </section>
 
       {/* ── Map ──────────────────────────────────────────────────────────── */}
-      <section className="relative bg-[#0F172A] border-t border-cyan-500/10 py-16 overflow-hidden transition-colors duration-300">
+      <section className="relative bg-[#1a1a1a] border-t border-orange-500/10 py-16 overflow-hidden transition-colors duration-300">
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
             background:
-              "radial-gradient(ellipse 70% 50% at 50% 100%, rgba(6,182,212,0.05) 0%, transparent 70%)",
+              "radial-gradient(ellipse 70% 50% at 50% 100%, rgba(249,115,22,0.05) 0%, transparent 70%)",
           }}
         />
         <div className="relative w-full px-4 sm:px-6 lg:px-8">
           <div className="max-w-6xl mx-auto">
-            <p className="text-xs font-mono font-semibold text-cyan-400 tracking-widest uppercase mb-4">
+            <p className="text-xs font-mono font-semibold text-orange-400 tracking-widest uppercase mb-4">
               Our Location
             </p>
-            <div className="relative w-full h-[300px] md:h-[420px] rounded-2xl overflow-hidden border border-cyan-500/15 shadow-[0_8px_40px_rgba(6,182,212,0.06)]">
+            <div className="relative w-full h-[300px] md:h-[420px] rounded-2xl overflow-hidden border border-orange-500/15 shadow-[0_8px_40px_rgba(249,115,22,0.06)]">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.745313320775!2d32.64591957310303!3d0.3466123639828599!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x177db948a3fc10ab%3A0xa61368735eb67913!2sKireka%20Shopping%20Centre!5e0!3m2!1sen!2sug!4v1773226618219!5m2!1sen!2sug"
                 className="absolute inset-0 w-full h-full border-0"

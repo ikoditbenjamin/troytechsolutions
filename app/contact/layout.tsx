@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Contact TroyTech Solutions | IT Services Kampala, Uganda",
   description:
-    "Contact TroyTech Solutions in Kireka, Kampala, Uganda for IT services, software development, computer training, graphics design, or loan inquiries. Call +256 747 447 447.",
+    "Contact TroyTech Solutions in Kireka, Kampala, Uganda for IT services, software development, computer training, and graphics design. Call +256 747 447 447.",
   keywords: [
     "contact TroyTech Solutions",
     "IT company contact Uganda",
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Contact TroyTech Solutions | IT Services Kampala, Uganda",
     description:
-      "Contact TroyTech Solutions in Kireka, Kampala, Uganda for IT services, software development, computer training, graphics design, or loan inquiries. Call +256 747 447 447.",
+      "Contact TroyTech Solutions in Kireka, Kampala, Uganda for IT services, software development, computer training, and graphics design. Call +256 747 447 447.",
     url: "https://www.troytech.xyz/contact",
     siteName: "TroyTech Solutions",
     images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Contact TroyTech Solutions Kampala Uganda" }],
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Contact TroyTech Solutions | IT Services Kampala, Uganda",
     description:
-      "Contact TroyTech Solutions in Kireka, Kampala for IT services, software development, training, and loan inquiries. Call +256 747 447 447.",
+      "Contact TroyTech Solutions in Kireka, Kampala for IT services, software development, and training. Call +256 747 447 447.",
     images: ["/og-image.png"],
   },
 };

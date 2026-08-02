@@ -42,11 +42,11 @@ const SERVICES = [
     duration: "Strategy call · 60 min",
   },
   {
-    id: "loans",
-    name: "Loan & Financial Services",
-    icon: "💰",
-    desc: "Flexible financial support to help grow your business.",
-    duration: "Finance call · 30 min",
+    id: "network-cctv",
+    name: "CCTV & Network Setup",
+    icon: "📡",
+    desc: "Professional CCTV installation and network configuration.",
+    duration: "Site visit · 30 min",
   },
 ];
 
@@ -188,16 +188,16 @@ export default function BookingPage() {
   // ── Submitted screen ───────────────────────────────────────────────────────
   if (submitted) {
     return (
-      <main className="min-h-screen bg-[#020617] flex items-center justify-center p-6">
+      <main className="min-h-screen bg-[#0a0a0a] flex items-center justify-center p-6">
         <div className="max-w-md w-full text-center">
-          <div className="w-20 h-20 rounded-full bg-cyan-500/10 border-2 border-cyan-500 flex items-center justify-center mx-auto mb-6 shadow-[0_0_24px_rgba(6,182,218,0.3)]">
-            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#06B6DA" strokeWidth="2.5">
+          <div className="w-20 h-20 rounded-full bg-orange-500/10 border-2 border-orange-500 flex items-center justify-center mx-auto mb-6 shadow-[0_0_24px_rgba(249,115,22,0.3)]">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#F97316" strokeWidth="2.5">
               <polyline points="20 6 9 17 4 12" />
             </svg>
           </div>
           <h1 className="text-3xl font-extrabold text-white tracking-tight mb-3">
             Request{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-emerald-400">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-300">
               Sent!
             </span>
           </h1>
@@ -209,15 +209,15 @@ export default function BookingPage() {
           </p>
           <p className="text-sm text-gray-500 mb-8">
             We&apos;ll reach you on{" "}
-            <span className="text-cyan-400 font-semibold">{form.phone}</span>.
+            <span className="text-orange-400 font-semibold">{form.phone}</span>.
           </p>
-          <div className="bg-cyan-500/10 border border-cyan-500/20 rounded-xl px-5 py-4 text-sm text-cyan-400 mb-8">
+          <div className="bg-orange-500/10 border border-orange-500/20 rounded-xl px-5 py-4 text-sm text-orange-400 mb-8">
             💬 A WhatsApp message has been prepared with your booking details.
             Please send it to confirm.
           </div>
           <Link
             href="/"
-            className="inline-flex items-center gap-2 rounded-xl px-8 py-3 text-sm font-semibold text-gray-950 bg-[#06B6DA] shadow-[0_0_16px_rgba(6,182,218,0.4)] hover:brightness-110 hover:scale-[1.03] transition-all duration-200"
+            className="inline-flex items-center gap-2 rounded-xl px-8 py-3 text-sm font-semibold text-black bg-[#F97316] shadow-[0_0_16px_rgba(249,115,22,0.4)] hover:brightness-110 hover:scale-[1.03] transition-all duration-200"
           >
             ← Back to Home
           </Link>
@@ -228,13 +228,13 @@ export default function BookingPage() {
 
   // ── Main layout ────────────────────────────────────────────────────────────
   return (
-    <main className="min-h-screen bg-[#020617]">
-      {/* Cyan grid overlay */}
+    <main className="min-h-screen bg-[#0a0a0a]">
+      {/* Orange grid overlay */}
       <div
         className="pointer-events-none fixed inset-0 z-0"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(6,182,212,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(6,182,212,0.025) 1px, transparent 1px)",
+            "linear-gradient(rgba(249,115,22,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(249,115,22,0.025) 1px, transparent 1px)",
           backgroundSize: "48px 48px",
         }}
       />
@@ -243,7 +243,7 @@ export default function BookingPage() {
         {/* Back link */}
         <Link
           href="/"
-          className="inline-flex items-center gap-2 text-sm font-mono text-gray-500 hover:text-cyan-400 transition-colors mb-10 group"
+          className="inline-flex items-center gap-2 text-sm font-mono text-gray-500 hover:text-orange-400 transition-colors mb-10 group"
         >
           <svg
             width="16" height="16" viewBox="0 0 24 24" fill="none"
@@ -257,19 +257,19 @@ export default function BookingPage() {
 
         {/* Page title */}
         <div className="mb-10">
-          <p className="text-xs font-mono font-semibold text-cyan-400 tracking-widest uppercase mb-3">
+          <p className="text-xs font-mono font-semibold text-orange-400 tracking-widest uppercase mb-3">
             Booking
           </p>
           <h1 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-tight">
             Book a{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-emerald-400">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-300">
               Consultation
             </span>
           </h1>
           <p className="mt-4 text-gray-400 max-w-lg leading-relaxed">
             Let us understand your needs. Fill in the form below and we&apos;ll
             reach out via{" "}
-            <span className="text-cyan-400 font-semibold">WhatsApp</span> to
+            <span className="text-orange-400 font-semibold">WhatsApp</span> to
             confirm your appointment.
           </p>
         </div>
@@ -282,9 +282,9 @@ export default function BookingPage() {
                 <div
                   className={`w-9 h-9 rounded-full border-2 flex items-center justify-center text-xs font-bold transition-all ${
                     i < step
-                      ? "bg-[#06B6DA] border-[#06B6DA] text-gray-950"
+                      ? "bg-[#F97316] border-[#F97316] text-black"
                       : i === step
-                        ? "border-[#06B6DA] text-[#06B6DA] bg-cyan-500/10"
+                        ? "border-[#F97316] text-[#F97316] bg-orange-500/10"
                         : "border-gray-700 text-gray-600"
                   }`}
                 >
@@ -296,19 +296,19 @@ export default function BookingPage() {
                     i + 1
                   )}
                 </div>
-                <span className={`text-xs mt-1 font-mono font-medium whitespace-nowrap ${i === step ? "text-cyan-400" : "text-gray-600"}`}>
+                <span className={`text-xs mt-1 font-mono font-medium whitespace-nowrap ${i === step ? "text-orange-400" : "text-gray-600"}`}>
                   {s.label}
                 </span>
               </div>
               {i < STEPS.length - 1 && (
-                <div className={`w-16 md:w-24 h-0.5 mx-1 mb-5 transition-all ${i < step ? "bg-[#06B6DA]" : "bg-gray-800"}`} />
+                <div className={`w-16 md:w-24 h-0.5 mx-1 mb-5 transition-all ${i < step ? "bg-[#F97316]" : "bg-gray-800"}`} />
               )}
             </div>
           ))}
         </div>
 
         {/* Card */}
-        <div className="bg-[#0F172A] rounded-2xl border border-cyan-500/10 shadow-[0_4px_24px_rgba(0,0,0,0.4)] backdrop-blur-sm p-6 md:p-8">
+        <div className="bg-[#1a1a1a] rounded-2xl border border-orange-500/10 shadow-[0_4px_24px_rgba(0,0,0,0.4)] backdrop-blur-sm p-6 md:p-8">
           <div className="mb-6">
             <h2 className="text-xl font-bold text-white tracking-tight">
               {STEPS[step].label}
@@ -324,10 +324,10 @@ export default function BookingPage() {
                   key={svc.id}
                   type="button"
                   onClick={() => setSelectedService(svc.id)}
-                  className={`text-left border-2 rounded-xl p-4 transition-all hover:border-cyan-500/60 hover:shadow-[0_0_16px_rgba(6,182,218,0.1)] ${
+                  className={`text-left border-2 rounded-xl p-4 transition-all hover:border-orange-500/60 hover:shadow-[0_0_16px_rgba(249,115,22,0.1)] ${
                     selectedService === svc.id
-                      ? "border-[#06B6DA] bg-cyan-500/5 shadow-[0_0_16px_rgba(6,182,218,0.12)]"
-                      : "border-cyan-500/10 bg-[#020b18]"
+                      ? "border-[#F97316] bg-orange-500/5 shadow-[0_0_16px_rgba(249,115,22,0.12)]"
+                      : "border-orange-500/10 bg-[#0a0a0a]"
                   }`}
                 >
                   <div className="flex items-start justify-between gap-3">
@@ -339,12 +339,12 @@ export default function BookingPage() {
                       <p className="text-xs text-gray-500 mt-1.5 leading-relaxed">
                         {svc.desc}
                       </p>
-                      <span className="inline-block mt-2 text-xs text-cyan-400 font-mono font-medium">
+                      <span className="inline-block mt-2 text-xs text-orange-400 font-mono font-medium">
                         {svc.duration}
                       </span>
                     </div>
                     {selectedService === svc.id && (
-                      <div className="w-5 h-5 rounded-full bg-[#06B6DA] flex items-center justify-center shrink-0 mt-1">
+                      <div className="w-5 h-5 rounded-full bg-[#F97316] flex items-center justify-center shrink-0 mt-1">
                         <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
                           <polyline points="20 6 9 17 4 12" />
                         </svg>
@@ -364,10 +364,10 @@ export default function BookingPage() {
                   key={b.id}
                   type="button"
                   onClick={() => setSelectedBudget(b.id)}
-                  className={`w-full text-left border-2 rounded-xl px-5 py-4 transition-all flex items-center justify-between gap-4 hover:border-cyan-500/60 hover:shadow-[0_0_16px_rgba(6,182,218,0.1)] ${
+                  className={`w-full text-left border-2 rounded-xl px-5 py-4 transition-all flex items-center justify-between gap-4 hover:border-orange-500/60 hover:shadow-[0_0_16px_rgba(249,115,22,0.1)] ${
                     selectedBudget === b.id
-                      ? "border-[#06B6DA] bg-cyan-500/5 shadow-[0_0_16px_rgba(6,182,218,0.12)]"
-                      : "border-cyan-500/10 bg-[#020b18]"
+                      ? "border-[#F97316] bg-orange-500/5 shadow-[0_0_16px_rgba(249,115,22,0.12)]"
+                      : "border-orange-500/10 bg-[#0a0a0a]"
                   }`}
                 >
                   <div>
@@ -375,7 +375,7 @@ export default function BookingPage() {
                     <p className="text-xs text-gray-500 mt-0.5">{b.desc}</p>
                   </div>
                   <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 transition-all ${
-                    selectedBudget === b.id ? "bg-[#06B6DA] border-[#06B6DA]" : "border-gray-700"
+                    selectedBudget === b.id ? "bg-[#F97316] border-[#F97316]" : "border-gray-700"
                   }`}>
                     {selectedBudget === b.id && (
                       <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
@@ -393,13 +393,13 @@ export default function BookingPage() {
             <div className="space-y-6 max-w-lg">
               <div>
                 <div className="flex items-center justify-between mb-4">
-                  <button onClick={prevMonth} className="w-8 h-8 rounded-full hover:bg-cyan-950/60 flex items-center justify-center text-gray-400 hover:text-cyan-400 transition-colors">
+                  <button onClick={prevMonth} className="w-8 h-8 rounded-full hover:bg-orange-950/60 flex items-center justify-center text-gray-400 hover:text-orange-400 transition-colors">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="15 18 9 12 15 6" /></svg>
                   </button>
                   <span className="font-semibold text-white text-sm font-mono">
                     {MONTH_NAMES[calMonth]} {calYear}
                   </span>
-                  <button onClick={nextMonth} className="w-8 h-8 rounded-full hover:bg-cyan-950/60 flex items-center justify-center text-gray-400 hover:text-cyan-400 transition-colors">
+                  <button onClick={nextMonth} className="w-8 h-8 rounded-full hover:bg-orange-950/60 flex items-center justify-center text-gray-400 hover:text-orange-400 transition-colors">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="9 18 15 12 9 6" /></svg>
                   </button>
                 </div>
@@ -423,10 +423,10 @@ export default function BookingPage() {
                         disabled={isPast}
                         onClick={() => !isPast && setSelectedDate(dateStr)}
                         className={`w-full aspect-square rounded-full text-xs font-medium transition-all ${
-                          isSelected ? "bg-[#06B6DA] text-gray-950 shadow-[0_0_12px_rgba(6,182,218,0.4)]"
+                          isSelected ? "bg-[#F97316] text-black shadow-[0_0_12px_rgba(249,115,22,0.4)]"
                             : isPast ? "text-gray-700 cursor-not-allowed"
-                            : isToday ? "border-2 border-[#06B6DA] text-cyan-400 font-bold hover:bg-cyan-500/10"
-                            : "text-gray-300 hover:bg-cyan-950/50 hover:text-cyan-400"
+                            : isToday ? "border-2 border-[#F97316] text-orange-400 font-bold hover:bg-orange-500/10"
+                            : "text-gray-300 hover:bg-orange-950/50 hover:text-orange-400"
                         }`}
                       >
                         {day}
@@ -440,7 +440,7 @@ export default function BookingPage() {
                 <div>
                   <p className="text-sm font-semibold text-white mb-3">
                     Available Times —{" "}
-                    <span className="text-cyan-400 font-mono">{selectedDate}</span>
+                    <span className="text-orange-400 font-mono">{selectedDate}</span>
                   </p>
                   <div className="grid grid-cols-4 sm:grid-cols-5 gap-2">
                     {TIME_SLOTS.map((time) => (
@@ -450,8 +450,8 @@ export default function BookingPage() {
                         onClick={() => setSelectedTime(time)}
                         className={`py-2 px-1 rounded-lg text-xs font-mono font-medium border-2 transition-all ${
                           selectedTime === time
-                            ? "border-[#06B6DA] bg-[#06B6DA] text-gray-950 shadow-[0_0_10px_rgba(6,182,218,0.3)]"
-                            : "border-cyan-500/15 text-gray-400 hover:border-cyan-500/50 hover:text-cyan-400"
+                            ? "border-[#F97316] bg-[#F97316] text-black shadow-[0_0_10px_rgba(249,115,22,0.3)]"
+                            : "border-orange-500/15 text-gray-400 hover:border-orange-500/50 hover:text-orange-400"
                         }`}
                       >
                         {time}
@@ -483,7 +483,7 @@ export default function BookingPage() {
                       value={form[key as keyof typeof form]}
                       onChange={(e) => setForm((f) => ({ ...f, [key]: e.target.value }))}
                       placeholder={placeholder}
-                      className="w-full border-2 border-cyan-500/15 rounded-xl px-4 py-3 text-sm bg-[#020b18] text-white placeholder:text-gray-600 focus:outline-none focus:border-cyan-500/50 focus:shadow-[0_0_12px_rgba(6,182,218,0.1)] transition-all"
+                      className="w-full border-2 border-orange-500/15 rounded-xl px-4 py-3 text-sm bg-[#0a0a0a] text-white placeholder:text-gray-600 focus:outline-none focus:border-orange-500/50 focus:shadow-[0_0_12px_rgba(249,115,22,0.1)] transition-all"
                     />
                   </div>
                 ))}
@@ -496,15 +496,15 @@ export default function BookingPage() {
                     onChange={(e) => setForm((f) => ({ ...f, message: e.target.value }))}
                     placeholder="Briefly describe what you need..."
                     rows={4}
-                    className="w-full border-2 border-cyan-500/15 rounded-xl px-4 py-3 text-sm bg-[#020b18] text-white placeholder:text-gray-600 focus:outline-none focus:border-cyan-500/50 focus:shadow-[0_0_12px_rgba(6,182,218,0.1)] transition-all resize-none leading-relaxed"
+                    className="w-full border-2 border-orange-500/15 rounded-xl px-4 py-3 text-sm bg-[#0a0a0a] text-white placeholder:text-gray-600 focus:outline-none focus:border-orange-500/50 focus:shadow-[0_0_12px_rgba(249,115,22,0.1)] transition-all resize-none leading-relaxed"
                   />
                 </div>
               </div>
 
               {/* Summary */}
-              <div className="rounded-2xl bg-[#020b18] border border-cyan-500/10 p-5 h-fit">
+              <div className="rounded-2xl bg-[#0a0a0a] border border-orange-500/10 p-5 h-fit">
                 <h3 className="font-bold text-white text-sm mb-4 flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-cyan-400 inline-block shadow-[0_0_6px_rgba(6,182,218,0.6)]" />
+                  <span className="w-2 h-2 rounded-full bg-orange-400 inline-block shadow-[0_0_6px_rgba(249,115,22,0.6)]" />
                   Booking Summary
                 </h3>
                 <div className="space-y-3 text-xs">
@@ -521,8 +521,8 @@ export default function BookingPage() {
                     </div>
                   ))}
                 </div>
-                <div className="mt-5 pt-4 border-t border-cyan-500/10">
-                  <div className="flex items-center gap-2 text-xs text-cyan-400">
+                <div className="mt-5 pt-4 border-t border-orange-500/10">
+                  <div className="flex items-center gap-2 text-xs text-orange-400">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                       <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.5a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.69h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10.09a16 16 0 0 0 6 6l1.46-1.46a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
                     </svg>
@@ -537,11 +537,11 @@ export default function BookingPage() {
           )}
 
           {/* Navigation */}
-          <div className="flex items-center justify-between mt-8 pt-6 border-t border-cyan-500/10">
+          <div className="flex items-center justify-between mt-8 pt-6 border-t border-orange-500/10">
             <button
               type="button"
               onClick={() => (step > 0 ? setStep((s) => s - 1) : undefined)}
-              className={`px-6 py-2.5 border-2 border-cyan-500/20 text-gray-400 text-sm font-medium rounded-xl hover:border-cyan-500/50 hover:text-white transition-all ${step === 0 ? "invisible" : ""}`}
+              className={`px-6 py-2.5 border-2 border-orange-500/20 text-gray-400 text-sm font-medium rounded-xl hover:border-orange-500/50 hover:text-white transition-all ${step === 0 ? "invisible" : ""}`}
             >
               ← Back
             </button>
@@ -553,7 +553,7 @@ export default function BookingPage() {
                 disabled={!canNext()}
                 className={`px-8 py-2.5 text-sm font-semibold rounded-xl transition-all ${
                   canNext()
-                    ? "bg-[#06B6DA] text-gray-950 shadow-[0_0_16px_rgba(6,182,218,0.4)] hover:brightness-110 hover:scale-[1.03] active:scale-[0.97]"
+                    ? "bg-[#F97316] text-black shadow-[0_0_16px_rgba(249,115,22,0.4)] hover:brightness-110 hover:scale-[1.03] active:scale-[0.97]"
                     : "bg-gray-800 text-gray-600 cursor-not-allowed"
                 }`}
               >
@@ -566,7 +566,7 @@ export default function BookingPage() {
                 disabled={!canNext() || isSubmitting}
                 className={`px-8 py-2.5 text-sm font-semibold rounded-xl transition-all flex items-center gap-2 ${
                   canNext() && !isSubmitting
-                    ? "bg-[#06B6DA] text-gray-950 shadow-[0_0_16px_rgba(6,182,218,0.4)] hover:brightness-110 hover:scale-[1.03] active:scale-[0.97]"
+                    ? "bg-[#F97316] text-black shadow-[0_0_16px_rgba(249,115,22,0.4)] hover:brightness-110 hover:scale-[1.03] active:scale-[0.97]"
                     : "bg-gray-800 text-gray-600 cursor-not-allowed"
                 }`}
               >
