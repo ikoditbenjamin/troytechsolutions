@@ -125,9 +125,16 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen bg-[#0a0a0a]">
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
-      <section className="relative border-b border-orange-500/10 overflow-hidden" style={{ minHeight: "420px" }}>
+      <section
+        className="relative border-b border-orange-500/10 overflow-hidden"
+        style={{ minHeight: "420px" }}
+      >
         <div className="absolute inset-0 z-0">
-          <HeroParallaxSlider images={HERO_IMAGES} parallaxStrength={30} autoPlayMs={5000} />
+          <HeroParallaxSlider
+            images={HERO_IMAGES}
+            parallaxStrength={30}
+            autoPlayMs={5000}
+          />
         </div>
         <div className="relative z-10 flex flex-col items-center justify-center text-center px-6 py-28 md:py-36">
           <p className="text-xs font-mono font-semibold text-orange-400 tracking-widest uppercase mb-4 drop-shadow">
@@ -182,7 +189,7 @@ export default function ContactPage() {
                   {
                     icon: Phone,
                     label: "Phone",
-                    value: "+256 (747) 447-447 · +256 (782) 391-512",
+                    value: "+256 (747) 447-447 · +256 (768) 711-017",
                     href: "tel:+256747447447",
                   },
                   {
