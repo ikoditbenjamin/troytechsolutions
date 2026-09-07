@@ -285,3 +285,124 @@ section, main > * {
   50%       { opacity: 0; }
 }
 .animate-blink { animation: blink 1s step-end infinite; }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   GSAP / FRAMER MOTION INTEGRATION HELPERS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Prevent FOUC on GSAP-animated elements before JS hydrates */
+.gsap-hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* ── Clip-path reveal utility (used by GSAP clipPath tweens) ── */
+.clip-reveal {
+  clip-path: inset(0 100% 0 0);
+}
+
+/* ── Framer Motion: respect reduced-motion preference ────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ── Three.js canvas should never receive pointer events unless
+      explicitly opted in ───────────────────────────────────────── */
+canvas.three-bg {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* ── Magnetic hover helper (elements that respond to GSAP mouse
+      tracking keep their transform origin centred) ─────────────── */
+.magnetic {
+  transform-origin: center center;
+  will-change: transform;
+}
+
+/* ── Stagger child baseline (so GSAP from-opacity:0 doesn't flash) */
+.stagger-child {
+  opacity: 0;
+}
+
+/* ── Page transition wrapper ────────────────────────────────────── */
+.page-enter {
+  opacity: 0;
+  transform: translateY(12px);
+}
+.page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+/* ── Scroll snap helpers ─────────────────────────────────────────── */
+.scroll-snap-y {
+  scroll-snap-type: y mandatory;
+}
+.scroll-snap-start {
+  scroll-snap-align: start;
+}
+
+/* ── Additional keyframes for Three.js / GSAP supplemental use ──── */
+
+/* Rotate continuously (used on orb / loading spinners) */
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+.animate-spin-slow { animation: spin-slow 8s linear infinite; }
+
+/* Colour wave for gradient text */
+@keyframes gradient-shift {
+  0%   { background-position: 0%   50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0%   50%; }
+}
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient-shift 4s ease infinite;
+}
+
+/* Breathe — subtle scale pulse */
+@keyframes breathe {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.04); }
+}
+.animate-breathe { animation: breathe 4s ease-in-out infinite; }
+
+/* Slide-in from bottom (for toast / notification elements) */
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-slide-up { animation: slide-up 0.45s cubic-bezier(0.22,1,0.36,1) both; }
+
+/* Wipe-in from left (supplementing GSAP clipPath) */
+@keyframes wipe-in {
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0 0% 0 0); }
+}
+.animate-wipe-in { animation: wipe-in 0.9s cubic-bezier(0.22,1,0.36,1) both; }
+
+/* Three.js canvas fade-in after load */
+@keyframes canvas-reveal {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.animate-canvas-reveal { animation: canvas-reveal 1.5s ease-out forwards; }
+
+/* Delay helpers (extend existing set) */
+.delay-600  { animation-delay: 600ms; }
+.delay-700  { animation-delay: 700ms; }
+.delay-800  { animation-delay: 800ms; }
+.delay-1000 { animation-delay: 1000ms; }
